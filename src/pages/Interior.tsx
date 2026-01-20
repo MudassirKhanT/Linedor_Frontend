@@ -59,11 +59,12 @@ const Interior: React.FC = () => {
               className={`
           px-2 sm:px-3
           py-1
-          font-semibold
+          font-serifBrand
+          font-medium
           text-md sm:text-base
           whitespace-nowrap
           transition-colors duration-300
-          ${isActive ? "text-[#0000B5]" : "text-gray-500 hover:text-[#0000B5]"}
+              ${isActive ? "text-[#0000B5] hover:underline underline-offset-6" : "text-[#0000B5] hover:underline underline-offset-6"}
         `}
             >
               {sub.charAt(0).toUpperCase() + sub.slice(1)}
@@ -76,7 +77,7 @@ const Interior: React.FC = () => {
         {filteredProjects.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
             {filteredProjects.slice(0, 30).map((project) => (
-              <div key={project._id} onClick={() => navigate(`/projects/${project._id}`)} className="relative cursor-pointer group overflow-hidden">
+              <div key={project._id} onClick={() => navigate(`/projects/${project._id}`)} className="relative cursor-pointer group overflow-hidden aspect-[4/3]">
                 <div className="relative w-full h-full">
                   <img
                     src={`${backendUrl}/${project.images[0]}`}

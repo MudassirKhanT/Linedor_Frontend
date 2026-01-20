@@ -57,11 +57,12 @@ const Objects: React.FC = () => {
               className={`
           px-2 sm:px-3
           py-1
-          font-semibold
+          font-serifBrand
+          font-medium
           text-md sm:text-base
           whitespace-nowrap
           transition-colors duration-300
-          ${isActive ? "text-[#0000B5]" : "text-gray-500 hover:text-[#0000B5]"}
+              ${isActive ? "text-[#0000B5] hover:underline underline-offset-6" : "text-[#0000B5] hover:underline underline-offset-6"}
         `}
             >
               {sub.charAt(0).toUpperCase() + sub.slice(1)}

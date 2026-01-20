@@ -84,7 +84,7 @@ const Home: React.FC = () => {
           }
         });
       },
-      { threshold: [0.6] }
+      { threshold: [0.6] },
     );
 
     if (firstSectionRef.current) observer.observe(firstSectionRef.current);
@@ -113,6 +113,13 @@ const Home: React.FC = () => {
   };
 
   const groups = generateLayoutGroups(projects);
+  const getPreviewText = (text: string, limit = 175) => {
+    const words = text?.split(" ") || [];
+    return {
+      preview: words.slice(0, limit).join(" "),
+      isTruncated: words.length > limit,
+    };
+  };
 
   return (
     <section className="w-full min-h-screen bg-white overflow-hidden">
@@ -131,46 +138,56 @@ const Home: React.FC = () => {
                   {/* LEFT : STUDIO */}
                   <div
                     className="
-    flex flex-col justify-center
+    flex flex-col justify-start
     p-5 sm:p-8 md:p-16 lg:p-20
     md:h-screen
     bg-[#0000B5]
   "
                   >
-                    <div className="mx-auto text-left">
-                      <p
-                        className="
-        font-['Times_New_Roman']
-        text-white
-        leading-relaxed
-        mb-4 sm:mb-5 md:mb-6
-        sm:text-md
-        lg:text-xl
-        4xl:text-4xl
-      "
-                      >
-                        {studio.description}
-                      </p>
+                    {(() => {
+                      const { preview, isTruncated } = getPreviewText(studio.description, 175);
 
-                      <div className="flex justify-center">
-                        <button
-                          onClick={() => {
-                            navigate("/about");
-                            window.scrollTo({ top: 0, behavior: "instant" });
-                          }}
-                          className="
-          text-sm sm:text-base
-          text-white
-          hover:underline
-          underline-offset-4
-          cursor-pointer
-          xl:text-lg 3xl:text-2xl
-        "
-                        >
-                          Read More →
-                        </button>
-                      </div>
-                    </div>
+                      return (
+                        <>
+                          {/* TEXT */}
+                          <p
+                            className="
+            font-sansBrand font-normal
+            text-white
+            leading-relaxed
+            sm:text-md lg:text-lg 4xl:text-4xl
+            text-left
+          "
+                          >
+                            {preview}
+                            {isTruncated && "..."}
+                          </p>
+
+                          {/* READ MORE - CENTERED */}
+                          {isTruncated && (
+                            <div className="mt-5 flex justify-center">
+                              <button
+                                onClick={() => {
+                                  navigate("/about");
+                                  window.scrollTo({ top: 0, behavior: "instant" });
+                                }}
+                                className="
+                font-sansBrand font-normal
+                text-sm sm:text-base
+                text-white
+                hover:underline
+                underline-offset-4
+                cursor-pointer
+                xl:text-lg 3xl:text-2xl
+              "
+                              >
+                                Read More →
+                              </button>
+                            </div>
+                          )}
+                        </>
+                      );
+                    })()}
                   </div>
 
                   {/* RIGHT : PROJECT */}

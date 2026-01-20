@@ -36,9 +36,9 @@ const PressPage = () => {
               <div className="h-[80vh] sm:h-[90vh] lg:h-screen">{p.image ? <img src={`${backendUrl}${p.image}`} alt={p.title} className="w-full h-full object-cover" /> : <div className="w-full h-full bg-gray-100" />}</div>
 
               <div className="flex flex-col items-center justify-center text-center py-8 px-4 bg-[#ffffff]">
-                <h3 className="text-xl font-semibold text-[#0000B5] mb-1">{p.title}</h3>
-                <p className="text-sm text-[#0000B5] mb-2">{p.date}</p>
-                <p className="text-[#0000B5] text-sm sm:text-base mb-3 leading-relaxed max-w-[90%]">{p.description}</p>
+                <h3 className="text-xl font-serifBrand font-medium text-[#0000B5] mb-1">{p.title}</h3>
+                <p className="text-sm font-sansBrand font-normal text-[#0000B5] mb-2">{p.date}</p>
+                <p className="text-[#0000B5] font-sansBrand font-normal text-sm sm:text-base mb-3 leading-relaxed max-w-[90%]">{p.description}</p>
                 {p.link && (
                   <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-[#0000B5] hover:underline">
                     View Press

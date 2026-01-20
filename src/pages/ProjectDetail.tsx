@@ -140,7 +140,7 @@ const ProjectDetail: React.FC = () => {
             <h2 className="text-xl md:text-3xl font-bold text-[#0000B5]">{project.title}</h2>
 
             {project.contactDescription && (
-              <ul className="space-y-2 text-[#0000B5] font-semibold">
+              <ul className="space-y-2 text-[#0000B5] font-sansBrand font-semibold">
                 {project.contactDescription
                   .split("\n")
                   .filter(Boolean)
@@ -162,7 +162,7 @@ const ProjectDetail: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-[#0000B5] font-semibold leading-relaxed space-y-4">
+          <div className="text-[#0000B5] font-sansBrand font-semibold leading-relaxed space-y-4">
             {project.description?.split(/\n\s*\n/).map((p, i) => (
               <p key={i}>{p}</p>
             ))}

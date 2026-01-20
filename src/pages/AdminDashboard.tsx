@@ -69,6 +69,8 @@ const ProjectsDashboard = () => {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [videoPreview, setVideoPreview] = useState<string | null>(null);
+
   const [alertMsg, setAlertMsg] = useState<{
     type: "success" | "error";
     message: string;
@@ -273,6 +275,7 @@ const ProjectsDashboard = () => {
                 ...form,
                 category: value,
                 subCategory: "",
+                isPrior: value === "video" ? false : form.isPrior,
               });
 
               setPdfFile(null);
@@ -294,7 +297,7 @@ const ProjectsDashboard = () => {
               <SelectItem value="Interior">Interior</SelectItem>
               <SelectItem value="Objects">Objects</SelectItem>
               <SelectItem value="Exhibition">Exhibition</SelectItem>
-              <SelectItem value="video">Video</SelectItem>
+              <SelectItem value="video">media</SelectItem>
             </SelectContent>
           </Select>
           {form.category !== "video" && (
@@ -320,10 +323,12 @@ const ProjectsDashboard = () => {
             </>
           )}
 
-          <div className="flex items-center justify-between">
-            <label className="font-medium">Key Project</label>
-            <Switch checked={!!form.isPrior} onCheckedChange={(checked) => setForm({ ...form, isPrior: checked })} />
-          </div>
+          {form.category !== "video" && (
+            <div className="flex items-center justify-between">
+              <label className="font-medium">Key Project</label>
+              <Switch checked={!!form.isPrior} onCheckedChange={(checked) => setForm({ ...form, isPrior: checked })} />
+            </div>
+          )}
 
           <div className="flex items-center justify-between">
             <label className="font-medium">Show on Home Page</label>
@@ -355,6 +360,7 @@ const ProjectsDashboard = () => {
                   }
 
                   setVideoFile(file);
+                  setVideoPreview(URL.createObjectURL(file));
                 }}
               />
             </label>
