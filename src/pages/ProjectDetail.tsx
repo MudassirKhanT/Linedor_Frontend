@@ -28,7 +28,7 @@ const ProjectDetail: React.FC = () => {
       .get(`${backendUrl}/api/projects/${id}`)
       .then((res) => setProject(res.data))
       .catch(console.error);
-  }, [id]);
+  }, [id, backendUrl]);
 
   /* ---------------- SCROLL TO TOP ON PROJECT CHANGE ---------------- */
   useEffect(() => {

@@ -18,7 +18,7 @@ const Interior: React.FC = () => {
     axios.get(`${backendUrl}/api/projects`).then((res) => {
       setProjects(res.data);
     });
-  }, []);
+  }, [backendUrl]);
 
   const filteredProjects = projects.filter((p) => {
     const category = p.category?.toLowerCase() || "";

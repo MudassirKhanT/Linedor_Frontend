@@ -109,6 +109,8 @@ const isVideoFile = (file?: string) => {
 };
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "full" }) => {
+  const isHalf = layout === "half";
+
   const ref = useRef<HTMLDivElement | null>(null);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
@@ -128,8 +130,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "f
       ref={ref}
       className={`
         relative w-full
-        md:h-screen
         ${isVideo ? "cursor-default" : "cursor-pointer"}
+        ${isHalf ? "md:h-[50vh]" : "md:h-screen"}
       `}
       onClick={() => {
         if (!isVideo) onClick(project._id);

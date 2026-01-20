@@ -17,7 +17,7 @@ const CategoryPage: React.FC<Props> = ({ category }) => {
     axios.get(`${backendUrl}/api/projects`).then((res) => {
       setProjects(res.data.filter((p: Project) => p.category === category));
     });
-  }, [category]);
+  }, [category, backendUrl]);
 
   return (
     <div className="pt-20 container mx-auto px-4">

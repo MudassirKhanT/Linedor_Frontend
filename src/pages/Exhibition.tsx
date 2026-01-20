@@ -14,7 +14,7 @@ const Exhibition: React.FC = () => {
       .get(`${backendUrl}/api/projects`)
       .then((res) => setProjects(res.data))
       .catch((err) => console.error("Error fetching projects:", err));
-  }, []);
+  }, [backendUrl]);
 
   const filteredProjects = projects.filter((p) => p.category?.toLowerCase() === "exhibition" && !p.toHomePage).slice(0, 30);
 

@@ -8,8 +8,12 @@ interface Press {
   date: string;
   description: string;
   link?: string;
-  image?: string;
+  image?: string; // can be image/video/gif
 }
+
+/* ---------- HELPERS ---------- */
+const isVideoUrl = (url: string) => /\.(mp4|webm|mov)$/i.test(url);
+const isGifUrl = (url: string) => /\.gif$/i.test(url);
 
 const PressPage = () => {
   const [press, setPress] = useState<Press[]>([]);
@@ -17,8 +21,12 @@ const PressPage = () => {
 
   useEffect(() => {
     const fetchPress = async () => {
-      const res = await axios.get(`${backendUrl}/api/press`);
-      setPress(res.data);
+      try {
+        const res = await axios.get(`${backendUrl}/api/press`);
+        setPress(res.data);
+      } catch {
+        console.error("Failed to fetch press");
+      }
     };
     fetchPress();
   }, []);
@@ -33,7 +41,7 @@ const PressPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2px]">
           {press.map((p) => (
             <div key={p._id} className="flex flex-col w-full">
-              <div className="h-[80vh] sm:h-[90vh] lg:h-screen">{p.image ? <img src={`${backendUrl}${p.image}`} alt={p.title} className="w-full h-full object-cover" /> : <div className="w-full h-full bg-gray-100" />}</div>
+              <div className="h-[80vh] sm:h-[90vh] lg:h-screen bg-gray-100">{p.image ? isVideoUrl(p.image) ? <video src={`${backendUrl}${p.image}`} className="w-full h-full object-cover" controls muted /> : isGifUrl(p.image) ? <img src={`${backendUrl}${p.image}`} alt={p.title} className="w-full h-full object-cover" /> : <img src={`${backendUrl}${p.image}`} alt={p.title} className="w-full h-full object-cover" /> : null}</div>
 
               <div className="flex flex-col items-center justify-center text-center py-8 px-4 bg-[#ffffff]">
                 <h3 className="text-xl font-serifBrand font-medium text-[#0000B5] mb-1">{p.title}</h3>

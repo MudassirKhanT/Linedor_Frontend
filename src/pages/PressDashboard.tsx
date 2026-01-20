@@ -3,6 +3,7 @@ import axios from "../services/api";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
 
+/* ---------------- TYPES ---------------- */
 interface PressItem {
   _id?: string;
   title: string;
@@ -14,14 +15,27 @@ interface PressItem {
   updatedAt?: string;
 }
 
-const PressDashboard = () => {
+interface FormType {
+  title: string;
+  date: string;
+  image: File | null;
+  description: string;
+  link: string;
+}
+
+interface AlertType {
+  type: "success" | "error" | "";
+  message: string;
+}
+
+const PressDashboard: React.FC = () => {
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
   const [press, setPress] = useState<PressItem[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(null);
 
-  const [form, setForm] = useState<any>({
+  const [form, setForm] = useState<FormType>({
     title: "",
     date: "",
     image: null,
@@ -29,11 +43,7 @@ const PressDashboard = () => {
     link: "",
   });
 
-  /* ---------------- ALERT ---------------- */
-  const [alert, setAlert] = useState<{ type: "success" | "error" | ""; message: string }>({
-    type: "",
-    message: "",
-  });
+  const [alert, setAlert] = useState<AlertType>({ type: "", message: "" });
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
@@ -56,10 +66,9 @@ const PressDashboard = () => {
   /* ---------------- FETCH PRESS ---------------- */
   const fetchPress = async () => {
     try {
-      const res = await axios.get("/press");
+      const res = await axios.get<PressItem[]>("/press");
 
-      // 🔥 Latest updated / added first
-      const sorted = res.data.sort((a: PressItem, b: PressItem) => {
+      const sorted = res.data.sort((a, b) => {
         const aTime = new Date(a.updatedAt || a.createdAt || "").getTime();
         const bTime = new Date(b.updatedAt || b.createdAt || "").getTime();
         return bTime - aTime;
@@ -67,7 +76,7 @@ const PressDashboard = () => {
 
       setPress(sorted);
       setCurrentPage(1);
-    } catch (err) {
+    } catch {
       setAlert({ type: "error", message: "Failed to load press ❌" });
     }
   };
@@ -90,7 +99,7 @@ const PressDashboard = () => {
   };
 
   /* ---------------- SUBMIT ---------------- */
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const data = new FormData();
@@ -114,8 +123,8 @@ const PressDashboard = () => {
       if (fileInputRef.current) fileInputRef.current.value = "";
 
       fetchPress();
-    } catch (err: any) {
-      setAlert({ type: "error", message: err.response?.data?.message || "Something went wrong ❌" });
+    } catch {
+      setAlert({ type: "error", message: "Something went wrong ❌" });
     }
   };
 

@@ -9,6 +9,7 @@ import { Switch } from "@/components/ui/switch";
 import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from "@dnd-kit/core";
 import { SortableContext, arrayMove, useSortable, rectSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import type { DragEndEvent } from "@dnd-kit/core";
 
 interface Project {
   _id: string;
@@ -69,7 +70,6 @@ const ProjectsDashboard = () => {
   const [videoFile, setVideoFile] = useState<File | null>(null);
   const [editingId, setEditingId] = useState<string | null>(null);
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
-  const [videoPreview, setVideoPreview] = useState<string | null>(null);
 
   const [alertMsg, setAlertMsg] = useState<{
     type: "success" | "error";
@@ -215,11 +215,13 @@ const ProjectsDashboard = () => {
     setPreviewFiles((prev) => prev.filter((p) => p.id !== id));
   };
 
-  const handleDragEnd = (event: any) => {
+  const handleDragEnd = (event: DragEndEvent) => {
     const { active, over } = event;
     if (!over || active.id === over.id) return;
+
     const oldIndex = previewFiles.findIndex((f) => f.id === active.id);
     const newIndex = previewFiles.findIndex((f) => f.id === over.id);
+
     setPreviewFiles(arrayMove(previewFiles, oldIndex, newIndex));
   };
 
@@ -360,7 +362,6 @@ const ProjectsDashboard = () => {
                   }
 
                   setVideoFile(file);
-                  setVideoPreview(URL.createObjectURL(file));
                 }}
               />
             </label>

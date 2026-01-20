@@ -16,7 +16,7 @@ const Objects: React.FC = () => {
 
   useEffect(() => {
     axios.get(`${backendUrl}/api/projects`).then((res) => setProjects(res.data));
-  }, []);
+  }, [backendUrl]);
 
   const filteredProjects = projects.filter((p) => {
     const category = p.category?.toLowerCase() || "";
