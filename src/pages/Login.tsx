@@ -7,8 +7,8 @@ const Login = () => {
   const { login } = useAuth();
 
   const handleLoginSuccess = (data: { email: string; role: "user" | "admin"; token: string }) => {
-    const { token, email, role } = data;
-    login({ email, role }, token);
+    const { token, role } = data;
+    login({ role }, token);
 
     if (role === "admin") {
       navigate("/dashboard");
