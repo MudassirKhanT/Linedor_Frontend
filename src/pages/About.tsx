@@ -93,7 +93,7 @@ const About = () => {
               cursor-pointer
               text-base
               transition-colors
-              ${activeTab === tab ? "text-[#0000B5] hover:underline underline-offset-6" : "text-[#0000B5] hover:underline underline-offset-6"}
+              ${activeTab === tab ? "text-[#0000B5] underline underline-offset-6" : "text-[#0000B5] hover:underline underline-offset-6"}
             `}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}

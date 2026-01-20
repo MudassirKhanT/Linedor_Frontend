@@ -62,7 +62,7 @@ const Objects: React.FC = () => {
           text-md sm:text-base
           whitespace-nowrap
           transition-colors duration-300
-              ${isActive ? "text-[#0000B5] hover:underline underline-offset-6" : "text-[#0000B5] hover:underline underline-offset-6"}
+              ${isActive ? "text-[#0000B5] underline underline-offset-6" : "text-[#0000B5] hover:underline underline-offset-6"}
         `}
             >
               {sub.charAt(0).toUpperCase() + sub.slice(1)}
