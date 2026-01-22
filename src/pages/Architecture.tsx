@@ -119,12 +119,12 @@ const Architecture: React.FC = () => {
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-[60vh] text-center">
-            <h2 className="text-4xl sm:text-5xl font-bold text-gray-800 mb-4 animate-pulse">Coming Soon</h2>
-            <p className="text-base sm:text-lg text-gray-600 max-w-md">
+            <h2 className="text-4xl sm:text-5xl  text-[#0000B5] font-serifBrand font-medium mb-4 animate-pulse">Coming Soon</h2>
+            <p className="text-base sm:text-lg text-[#0000B5] font-sansBrand font-normal max-w-md">
               Exciting new designs are on their way in our <span className="font-semibold">{subcategory ? subcategory.charAt(0).toUpperCase() + subcategory.slice(1) : "Architecture"}</span> collection.
             </p>
             <div className="mt-8">
-              <div className="w-24 h-1 bg-black mx-auto rounded-full animate-bounce"></div>
+              <div className="w-24 h-1 bg-[#0000B5] mx-auto rounded-full animate-bounce"></div>
             </div>
           </div>
         )}

@@ -349,13 +349,13 @@ const Home: React.FC = () => {
 
   const groups = generateLayoutGroups(projects);
 
-  const getPreviewText = (text: string, limit = 175) => {
-    const words = text?.split(" ") || [];
-    return {
-      preview: words.slice(0, limit).join(" "),
-      isTruncated: words.length > limit,
-    };
-  };
+  // const getPreviewText = (text: string, limit = 175) => {
+  //   const words = text?.split(" ") || [];
+  //   return {
+  //     preview: words.slice(0, limit).join(" "),
+  //     isTruncated: words.length > limit,
+  //   };
+  // };
 
   return (
     <section className="w-full min-h-screen bg-white overflow-hidden">
@@ -367,20 +367,21 @@ const Home: React.FC = () => {
           if (gi === 6 && studio) {
             const projectForRight = group[0];
 
-            const { preview, isTruncated } = getPreviewText(studio.description, 175);
+            //const { preview, isTruncated } = getPreviewText(studio.description, 175);
 
             return (
               <div key="studio-section">
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   {/* LEFT : STUDIO */}
                   <div className="flex flex-col justify-start p-5 sm:p-8 md:p-16 lg:p-20 md:h-screen bg-[#0000B5] text-white">
-                    <p className="font-sansBrand font-normal leading-relaxed sm:text-md lg:text-lg 4xl:text-4xl">
-                      {preview}
-                      {isTruncated && "..."}
+                    <p className="font-sansBrand font-normal leading-relaxed sm:text-md lg:text-lg 4xl:text-4xl overflow-hidden">
+                      {/* {preview}
+                      {isTruncated && "..."} */}
+                      {studio.description}
                     </p>
 
-                    {isTruncated && (
-                      <div className="mt-5 flex justify-center">
+                    {
+                      <div className="mt-10 flex justify-center">
                         <button
                           onClick={() => {
                             navigate("/about");
@@ -391,7 +392,7 @@ const Home: React.FC = () => {
                           Read More →
                         </button>
                       </div>
-                    )}
+                    }
                   </div>
 
                   {/* RIGHT : PROJECT */}

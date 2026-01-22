@@ -206,6 +206,7 @@ const ProjectsDashboard = () => {
     }));
 
     setPreviewFiles(previews);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const handleDeletePreview = (id: string) => {
@@ -420,9 +421,13 @@ const ProjectsDashboard = () => {
 
               <div className="p-4">
                 <h3 className="font-bold text-lg mb-1">{project.title}</h3>
-                <p className="text-sm text-gray-600 mb-2">
-                  {project.category} - {project.subCategory}
-                </p>
+                {project.category == "video" ? (
+                  <p className="text-sm text-gray-600 mb-2">media</p>
+                ) : (
+                  <p className="text-sm text-gray-600 mb-2">
+                    {project.category} - {project.subCategory}
+                  </p>
+                )}
 
                 {project.isPrior && <p className="text-sm font-semibold text-blue-600">⭐ Priority</p>}
                 {project.toHomePage && <p className="text-sm font-semibold text-green-600">🏠 Home Order: {project.homePageOrder ?? "-"}</p>}

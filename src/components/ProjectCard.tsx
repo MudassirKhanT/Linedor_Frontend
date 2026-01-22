@@ -13,6 +13,9 @@ const isVideoFile = (file?: string) => {
   if (!file) return false;
   return /\.(mp4|webm|mov)$/i.test(file);
 };
+const isMedia = (project: Project) => {
+  return project.category == "video";
+};
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "full" }) => {
   const isHalf = layout === "half";
@@ -113,7 +116,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "f
       )}
 
       {/* ---------- TITLE ---------- */}
-      {!isVideo && (
+      {!isMedia(project) && (
         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 md:p-8 text-white z-10">
           <h1 className="text-md md:text-xl font-serifBrand font-medium">{project.title}</h1>
         </div>

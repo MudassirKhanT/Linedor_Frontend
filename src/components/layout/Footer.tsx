@@ -6,7 +6,7 @@ const Footer: React.FC = () => {
       <div className="max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 text-center md:text-left">
         {/* -------- BRAND -------- */}
         <div className="md:mx-auto">
-          <h2 className="font-semibold mb-3 uppercase">LİNEDORİ</h2>
+          <h2 className="font-serifBrand font-medium mb-3 uppercase">LİNEDORİ</h2>
           <p>101 Dr. D. N. Road,</p>
           <p>1st Floor, Ravi Building,</p>
           <p>Fort, Mumbai 400026</p>
@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
 
         {/* -------- CONTACT -------- */}
         <div className="md:mx-auto">
-          <h2 className="font-semibold mb-3 uppercase">Contact</h2>
+          <h2 className="font-serifBrand font-medium mb-3 uppercase">Contact</h2>
 
           <a href="mailto:hello@finedori.xyz" className="block hover:underline">
             email – hello@finedori.xyz
@@ -35,7 +35,7 @@ const Footer: React.FC = () => {
 
         {/* -------- QUICK LINKS -------- */}
         <div className="md:mx-auto">
-          <h2 className="font-semibold mb-3 uppercase">Quick Links</h2>
+          <h2 className="font-serifBrand font-medium mb-3 uppercase">Quick Links</h2>
 
           <div className="space-y-1">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="block hover:underline">

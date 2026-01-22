@@ -82,7 +82,10 @@ const About = () => {
       </div>
 
       {/* ---------------- TABS ---------------- */}
-      <div className="container mx-auto px-4 pt-[100px] pb-4 flex gap-4 overflow-x-auto">
+      <div
+        className="container  px-4 pt-[100px] pb-4 flex flex-nowrap sm:flex-wrap
+  gap-4 overflow-x-auto"
+      >
         {tabs.map((tab) => (
           <button
             key={tab}
@@ -106,14 +109,14 @@ const About = () => {
         <div className="w-full md:w-1/2 h-[40vh] md:h-screen">{studio?.image ? isVideo(studio.image) ? <video src={`${backendUrl}${studio.image}`} autoPlay muted loop playsInline className="w-full h-full object-cover outline-none" /> : <img src={`${backendUrl}${studio.image}`} className="w-full h-full object-cover" /> : <div className="w-full h-full bg-gray-200 flex items-center justify-center">No Media</div>}</div>
 
         {/* CONTENT — NO TOP GAP */}
-        <div className="w-full md:w-1/2 px-8 md:px-16 pt-0 pb-8 flex flex-col">
+        <div className="w-full md:w-1/2 px-8 md:px-16 py-5 md:pt-0 pb-8 flex flex-col">
           <p className="text-[#0000B5] font-sansBrand text-base md:text-lg leading-relaxed">{studio?.description}</p>
 
-          <div className="mt-6 space-y-2 font-sansBrand text-[#0000B5]">
-            {studio?.location && <p>📍 {studio.location}</p>}
-            {studio?.contact && <p>📞 {studio.contact}</p>}
-            {studio?.email && <p>✉️ {studio.email}</p>}
-          </div>
+          {/* <div className="mt-6 space-y-2 font-sansBrand text-[#0000B5]">
+            {studio?.location && <p> {studio.location}</p>}
+            {studio?.contact && <p> {studio.contact}</p>}
+            {studio?.email && <p> {studio.email}</p>}
+          </div> */}
         </div>
       </section>
 
@@ -134,7 +137,7 @@ const About = () => {
           grid grid-cols-1
           md:grid-cols-[260px_auto]
           gap-10
-          items-center
+          items-start
           justify-center
         "
             >
@@ -165,7 +168,7 @@ const About = () => {
       </section>
 
       {/* ================= PRESS ================= */}
-      <section id="press" className="py-20 text-center">
+      <section id="press" className="py-5 text-center">
         <h2 className="text-3xl font-sansBrand text-[#0000B5] mb-4">Press & Media</h2>
         <p className="text-[#0000B5] max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
         <a href="/press" className="text-[#0000B5] hover:underline">

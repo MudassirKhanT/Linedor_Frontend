@@ -118,6 +118,7 @@ const PeopleDashboard: React.FC = () => {
     });
     setPreview(member.image ? `${backendUrl}${member.image}` : null);
     setEditId(member._id);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   /* ---------------- DELETE ---------------- */

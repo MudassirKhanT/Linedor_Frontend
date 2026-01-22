@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import api from "../../services/api";
@@ -37,13 +36,6 @@ const LoginForm = ({ onSuccess }: Props) => {
         <Button type="submit" className="w-full">
           Login
         </Button>
-
-        <p className="text-sm text-center text-gray-600">
-          New user?{" "}
-          <Link to="/signup" className="text-blue-600 hover:underline">
-            Sign up here
-          </Link>
-        </p>
       </form>
     </div>
   );

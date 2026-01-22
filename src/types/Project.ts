@@ -1,7 +1,7 @@
 export interface Project {
   _id: string;
   title: string;
-  category: "Architecture" | "Interior" | "Objects" | "Exhibition";
+  category: "Architecture" | "Interior" | "Objects" | "Exhibition" | "video";
   subCategory: "Residential" | "Commercial" | "All" | "Lighting" | "Furniture";
   description?: string;
   images: string[];
