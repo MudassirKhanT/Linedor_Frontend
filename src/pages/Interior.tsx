@@ -9,15 +9,24 @@ const Interior: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!subcategory) navigate("/interior/all", { replace: true });
   }, [subcategory, navigate]);
 
   useEffect(() => {
-    axios.get(`${backendUrl}/api/projects`).then((res) => {
-      setProjects(res.data);
-    });
+    axios
+      .get(`${backendUrl}/api/projects`)
+      .then((res) => {
+        setProjects(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching projects:", err);
+      })
+      .finally(() => {
+        setLoading(false); // 👈 THIS IS THE KEY
+      });
   }, [backendUrl]);
 
   const filteredProjects = projects.filter((p) => {
@@ -74,7 +83,15 @@ const Interior: React.FC = () => {
       </div>
 
       <div className="w-full">
-        {filteredProjects.length > 0 ? (
+        {loading ? (
+          /* 🔵 BLUE LOADER */
+          <div className="flex items-center justify-center h-[60vh]">
+            <div className="relative w-16 h-16">
+              <div className="absolute inset-0 rounded-full border-4 border-[#0000D3]/20"></div>
+              <div className="absolute inset-0 rounded-full border-4 border-[#0000D3] border-t-transparent animate-spin"></div>
+            </div>
+          </div>
+        ) : filteredProjects.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
             {filteredProjects.slice(0, 30).map((project) => (
               <div key={project._id} onClick={() => navigate(`/projects/${project._id}`)} className="relative cursor-pointer group overflow-hidden aspect-[4/3]">
@@ -82,10 +99,6 @@ const Interior: React.FC = () => {
                   <img
                     src={`${backendUrl}/${project.images[0]}`}
                     alt={project.title}
-                    onLoad={(e) => {
-                      const img = e.currentTarget;
-                      img.style.objectFit = img.naturalHeight > img.naturalWidth ? "contain" : "cover";
-                    }}
                     className="
                 w-full h-full
                 transition-opacity duration-700 ease-in-out
@@ -97,10 +110,10 @@ const Interior: React.FC = () => {
                     <img
                       src={`${backendUrl}/${project.images[1]}`}
                       alt={project.title}
-                      onLoad={(e) => {
-                        const img = e.currentTarget;
-                        img.style.objectFit = img.naturalHeight > img.naturalWidth ? "contain" : "cover";
-                      }}
+                      // onLoad={(e) => {
+                      //   const img = e.currentTarget;
+                      //   img.style.objectFit = img.naturalHeight > img.naturalWidth ? "contain" : "cover";
+                      // }}
                       className="
                   absolute top-0 left-0
                   w-full h-full

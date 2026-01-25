@@ -24,6 +24,8 @@ interface Project {
   isPrior?: boolean;
   toHomePage?: boolean;
   homePageOrder?: number;
+  createdAt: string; // Add this
+  updatedAt?: string;
 }
 
 interface PreviewFile {
@@ -246,9 +248,16 @@ const ProjectsDashboard = () => {
     }
   };
 
+  const sortedProjects = [...projects].sort((a, b) => {
+    const aTime = new Date(a.updatedAt || a.createdAt).getTime();
+    const bTime = new Date(b.updatedAt || b.createdAt).getTime();
+    return bTime - aTime; // newest first
+  });
+
   const indexOfLast = currentPage * projectsPerPage;
   const indexOfFirst = indexOfLast - projectsPerPage;
-  const currentProjects = projects.slice(indexOfFirst, indexOfLast);
+  const currentProjects = sortedProjects.slice(indexOfFirst, indexOfLast);
+
   const totalPages = Math.ceil(projects.length / projectsPerPage);
 
   const handlePageChange = (page: number) => setCurrentPage(page);

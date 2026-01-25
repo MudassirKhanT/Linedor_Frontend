@@ -99,7 +99,15 @@ const ProjectDetail: React.FC = () => {
     setTouchEndX(null);
   };
 
-  if (!project) return <p className="pt-20 text-center">Loading...</p>;
+  if (!project)
+    return (
+      <div className="flex items-center justify-center h-[60vh]">
+        <div className="relative w-16 h-16">
+          <div className="absolute inset-0 rounded-full border-4 border-[#0000D3]/20"></div>
+          <div className="absolute inset-0 rounded-full border-4 border-[#0000D3] border-t-transparent animate-spin"></div>
+        </div>
+      </div>
+    );
 
   const totalImages = project.images.length;
 
