@@ -7,7 +7,7 @@ export default {
         "4xl": "1800px",
       },
       fontFamily: {
-        serifBrand: ['"EB Garamond"', "serif"],
+        serifBrand: ["EB Garamond", "serif"],
         sansBrand: ["Inter", "sans-serif"],
       },
     },

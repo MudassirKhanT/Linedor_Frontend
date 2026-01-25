@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import { Mail } from "lucide-react";
 
 interface Props {
   projectTitle: string;
@@ -46,9 +45,29 @@ const ObjectsContact: React.FC<Props> = ({ projectTitle }) => {
 
   return (
     <>
-      <button onClick={() => setModalOpen(true)} className="flex items-center cursor-pointer gap-2 text-[#0000B5] hover:underline transition text-base font-semibold underline-offset-4 ">
-        <Mail className="w-4 h-4" />
-        contact
+      <button
+        onClick={() => setModalOpen(true)}
+        className="
+    inline-flex
+    items-center
+    gap-2
+    px-4
+    py-2
+    text-base
+    font-serifBrand
+    font-medium
+    text-[#0000D3]
+    border
+    border-[#0000D3]
+    rounded-md
+    cursor-pointer
+    transition
+    hover:bg-[#0000D3]
+    hover:text-white
+    active:scale-95
+  "
+      >
+        Inquire Now
       </button>
 
       {modalOpen && (
@@ -61,8 +80,8 @@ const ObjectsContact: React.FC<Props> = ({ projectTitle }) => {
             {!success ? (
               <>
                 <div className="border-b border-gray-200 px-6 py-4">
-                  <h2 className="text-2xl font-semibold text-[#0000B5] text-center">Connect</h2>
-                  <p className="text-center text-[#0000B5] text-sm mt-2">
+                  <h2 className="text-2xl font-semibold text-[#0000D3] text-center">Connect</h2>
+                  <p className="text-center text-[#0000D3] text-sm mt-2">
                     Interested in <span className="font-semibold">{projectTitle}</span>? Fill out the form below — we’ll reach out soon.
                   </p>
                 </div>
@@ -73,7 +92,7 @@ const ObjectsContact: React.FC<Props> = ({ projectTitle }) => {
                   <input type="text" name="subject" placeholder="Subject" required className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-700" />
                   <textarea name="message" placeholder="Message" rows={4} required className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-700 resize-none"></textarea>
 
-                  <button type="submit" disabled={loading} className="w-full cursor-pointer bg-[#0000B5] text-white py-2 text-sm hover:bg-gray-900 transition">
+                  <button type="submit" disabled={loading} className="w-full cursor-pointer bg-[#0000D3] text-white py-2 text-sm hover:bg-gray-900 transition">
                     {loading ? "Sending..." : "Send Message"}
                   </button>
 

@@ -13,7 +13,6 @@ interface Press {
 
 /* ---------- HELPERS ---------- */
 const isVideoUrl = (url: string) => /\.(mp4|webm|mov)$/i.test(url);
-const isGifUrl = (url: string) => /\.gif$/i.test(url);
 
 const PressPage = () => {
   const [press, setPress] = useState<Press[]>([]);
@@ -29,7 +28,23 @@ const PressPage = () => {
       }
     };
     fetchPress();
-  }, []);
+  }, [backendUrl]);
+  const formatDateToMonthYear = (dateStr: string) => {
+    if (!dateStr) return "";
+
+    const [dayStr, monthStr, yearStr] = dateStr.split("-");
+
+    const day = parseInt(dayStr, 10);
+    const month = parseInt(monthStr, 10) - 1; // JS months are 0-based
+    const year = parseInt(yearStr, 10);
+
+    const date = new Date(day, month, year);
+
+    return date.toLocaleString("en-US", {
+      month: "long",
+      year: "numeric",
+    });
+  };
 
   return (
     <div className="relative min-h-screen bg-[#ffffff]">
@@ -41,17 +56,27 @@ const PressPage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[2px]">
           {press.map((p) => (
             <div key={p._id} className="flex flex-col w-full">
-              <div className="h-[80vh] sm:h-[90vh] lg:h-screen bg-gray-100">{p.image ? isVideoUrl(p.image) ? <video src={`${backendUrl}${p.image}`} className="w-full h-full object-cover" controls muted /> : isGifUrl(p.image) ? <img src={`${backendUrl}${p.image}`} alt={p.title} className="w-full h-full object-cover" /> : <img src={`${backendUrl}${p.image}`} alt={p.title} className="w-full h-full object-cover" /> : null}</div>
+              {/* Media */}
+              <div className="h-[80vh] sm:h-[90vh] lg:h-[85vh] bg-gray-100">{p.image ? isVideoUrl(p.image) ? <video src={`${backendUrl}${p.image}`} className="w-full h-full object-cover" controls muted /> : <img src={`${backendUrl}${p.image}`} alt={p.title} className="w-full h-full object-cover" /> : null}</div>
 
-              <div className="flex flex-col items-center justify-center text-center py-8 px-4 bg-[#ffffff]">
-                <h3 className="text-xl font-serifBrand font-medium text-[#0000B5] mb-1">{p.title}</h3>
-                <p className="text-sm font-sansBrand font-normal text-[#0000B5] mb-2">{p.date}</p>
-                <p className="text-[#0000B5] font-sansBrand font-normal text-sm sm:text-base mb-3 leading-relaxed max-w-[90%]">{p.description}</p>
-                {p.link && (
-                  <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-[#0000B5] hover:underline">
-                    View Press
-                  </a>
-                )}
+              {/* Content */}
+              <div className="bg-white py-6 px-6">
+                {/* Title + View Press */}
+                <div className="flex items-center justify-between">
+                  <h3 className="text-md font-serifBrand font-medium text-[#0000D3]">{p.title}</h3>
+
+                  {p.link && (
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-md font-serifBrand font-medium text-[#0000D3] hover:underline underline-offset-4 whitespace-nowrap">
+                      View Press
+                    </a>
+                  )}
+                </div>
+
+                {/* Date */}
+                <p className="text-sm font-serifBrand font-medium text-[#0000D3]">{formatDateToMonthYear(p.date)}</p>
+
+                {/* Description */}
+                <p className="text-[#0000D3] font-sansBrand font-normal text-sm  leading-relaxed">{p.description}</p>
               </div>
             </div>
           ))}

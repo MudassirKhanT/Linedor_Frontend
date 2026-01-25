@@ -94,9 +94,9 @@ const About = () => {
               px-3 py-1
               font-serifBrand font-medium
               cursor-pointer
-              text-base
+              text-lg
               transition-colors
-              ${activeTab === tab ? "text-[#0000B5] underline underline-offset-6" : "text-[#0000B5] hover:underline underline-offset-6"}
+              ${activeTab === tab ? "text-[#0000D3] underline underline-offset-6" : "text-[#0000D3] hover:underline underline-offset-6"}
             `}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
@@ -109,10 +109,10 @@ const About = () => {
         <div className="w-full md:w-1/2 h-[40vh] md:h-screen">{studio?.image ? isVideo(studio.image) ? <video src={`${backendUrl}${studio.image}`} autoPlay muted loop playsInline className="w-full h-full object-cover outline-none" /> : <img src={`${backendUrl}${studio.image}`} className="w-full h-full object-cover" /> : <div className="w-full h-full bg-gray-200 flex items-center justify-center">No Media</div>}</div>
 
         {/* CONTENT — NO TOP GAP */}
-        <div className="w-full md:w-1/2 px-8 md:px-16 py-5 md:pt-0 pb-8 flex flex-col">
-          <p className="text-[#0000B5] font-sansBrand text-base md:text-lg leading-relaxed">{studio?.description}</p>
+        <div className="w-full md:w-1/2 px-8 md:px-16 py-5 md:pt-10 pb-8 flex flex-col bg-[#0000D3] ">
+          <p className="text-white font-sansBrand text-base md:text-lg leading-relaxed">{studio?.description}</p>
 
-          {/* <div className="mt-6 space-y-2 font-sansBrand text-[#0000B5]">
+          {/* <div className="mt-6 space-y-2 font-sansBrand text-[#0000D3]">
             {studio?.location && <p> {studio.location}</p>}
             {studio?.contact && <p> {studio.contact}</p>}
             {studio?.email && <p> {studio.email}</p>}
@@ -121,11 +121,10 @@ const About = () => {
       </section>
 
       {/* ================= PEOPLE ================= */}
-      <section id="people" className="bg-white py-16 sm:py-20 2xl:max-w-[1400px] 2xl:mx-auto">
+      <section id="people" className="bg-white py-16 sm:py-15 2xl:max-w-[1400px] 2xl:mx-auto">
         {/* ---------- HEADING ---------- */}
-        <div className="text-center mb-14 sm:mb-20 px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serifBrand font-medium text-[#0000B5] mb-3 sm:mb-4">Our Team</h2>
-          <p className="text-[#0000B5] font-sansBrand font-normal max-w-2xl mx-auto text-sm sm:text-base md:text-lg">Meet our creative professionals driving innovation every day.</p>
+        <div className="text-center  sm:mb-15 px-4 sm:px-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serifBrand font-medium text-[#0000D3] sm:mb-4">Our Team</h2>
         </div>
 
         {/* ---------- TEAM LIST ---------- */}
@@ -147,20 +146,20 @@ const About = () => {
                   src={member.image ? `${backendUrl}${member.image}` : "https://via.placeholder.com/400x500"}
                   alt={member.name}
                   className="
-              w-[220px] sm:w-[240px]
-              h-[280px] sm:h-[340px]
+              w-[220px] sm:w-[260px]
+              h-[280px] sm:h-[360px]
               object-cover
             "
                 />
               </div>
 
               {/* CONTENT */}
-              <div className="text-center md:text-left md:max-w-md">
-                <h3 className="text-[#0000B5] font-serifBrand  text-xl sm:text-2xl font-medium leading-tight mb-1">{member.name}</h3>
+              <div className=" md:max-w-md">
+                <p className="text-[#0000D3] text-center md:text-left font-serifBrand  text-xl sm:text-2xl font-medium leading-tight mb-1">{member.name}</p>
 
-                {member.role && <p className="text-[#0000B5] font-sansBrand font-normal text-base sm:text-lg mb-3">{member.role}</p>}
+                {member.role && <p className="text-[#0000D3] text-center md:text-left font-serifBrand font-medium text-base sm:text-lg lg:text-xl mb-3">{member.role}</p>}
 
-                <p className="text-[#0000B5] font-sansBrand font-normal text-sm sm:text-base leading-relaxed">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
+                <p className="text-[#0000D3]  sm:text-left font-sansBrand font-normal text-sm sm:text-base leading-relaxed">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
               </div>
             </div>
           ))}
@@ -168,10 +167,10 @@ const About = () => {
       </section>
 
       {/* ================= PRESS ================= */}
-      <section id="press" className="py-5 text-center">
-        <h2 className="text-3xl font-sansBrand text-[#0000B5] mb-4">Press & Media</h2>
-        <p className="text-[#0000B5] max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
-        <a href="/press" className="text-[#0000B5] hover:underline">
+      <section id="press" className=" text-center">
+        <h2 className="text-3xl font-serifBrand font-medium text-[#0000D3] mb-4">Press & Media</h2>
+        <p className="text-[#0000D3] max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
+        <a href="/press" className="text-[#0000D3] font-serifBrand font-medium hover:underline">
           View Press →
         </a>
       </section>

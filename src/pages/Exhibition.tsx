@@ -8,15 +8,25 @@ const Exhibition: React.FC = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const navigate = useNavigate();
   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
+
     axios
       .get(`${backendUrl}/api/projects`)
-      .then((res) => setProjects(res.data))
-      .catch((err) => console.error("Error fetching projects:", err));
+      .then((res) => {
+        setProjects(res.data);
+      })
+      .catch((err) => {
+        console.error("Error fetching projects:", err);
+      })
+      .finally(() => {
+        setLoading(false); // 👈 THIS IS THE KEY
+      });
   }, [backendUrl]);
 
-  const filteredProjects = projects.filter((p) => p.category?.toLowerCase() === "exhibition" && !p.toHomePage).slice(0, 30);
+  const filteredProjects = projects.filter((p) => p.category?.toLowerCase() === "exhibition").slice(0, 30);
 
   return (
     <div className="relative w-full bg-white">
@@ -25,7 +35,15 @@ const Exhibition: React.FC = () => {
       </div>
 
       <div className="w-full pt-28 pb-12">
-        {filteredProjects.length > 0 ? (
+        {loading ? (
+          /* 🔵 BLUE LOADER */
+          <div className="flex items-center justify-center h-[60vh]">
+            <div className="relative w-16 h-16">
+              <div className="absolute inset-0 rounded-full border-4 border-[#0000D3]/20"></div>
+              <div className="absolute inset-0 rounded-full border-4 border-[#0000D3] border-t-transparent animate-spin"></div>
+            </div>
+          </div>
+        ) : filteredProjects.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 w-full">
             {filteredProjects.slice(0, 30).map((project) => (
               <div key={project._id} onClick={() => navigate(`/projects/${project._id}`)} className="relative cursor-pointer group">
@@ -59,19 +77,19 @@ const Exhibition: React.FC = () => {
                 </div>
 
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 sm:p-6 text-white">
-                  <h2 className="text-lg sm:text-xl font-semibold">{project.title}</h2>
+                  <h2 className="text-lg sm:text-xl font-serifBrand font-medium ">{project.title}</h2>
                 </div>
               </div>
             ))}
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-[60vh] text-center">
-            <h2 className="text-4xl sm:text-5xl text-[#0000B5] font-serifBrand font-medium  mb-4 animate-pulse">Coming Soon</h2>
-            <p className="text-base sm:text-lg text-[#0000B5] font-sansBrand font-normal  max-w-md">
-              Exciting new designs are on their way in our <span className="font-semibold">Exhibition</span> collection.
+            <h2 className="text-4xl sm:text-5xl text-[#0000D3] font-serifBrand font-medium  mb-4 animate-pulse">Coming Soon</h2>
+            <p className="text-base sm:text-lg text-[#0000D3] font-sansBrand font-normal  max-w-md">
+              Exciting new designs are on their way in our <span className="font-serifBrand font-medium ">Exhibition</span> collection.
             </p>
             <div className="mt-8">
-              <div className="w-24 h-1 bg-[#0000B5] mx-auto rounded-full animate-bounce"></div>
+              <div className="w-24 h-1 bg-[#0000D3] mx-auto rounded-full animate-bounce"></div>
             </div>
           </div>
         )}

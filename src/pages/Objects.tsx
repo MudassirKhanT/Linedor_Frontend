@@ -22,7 +22,7 @@ const Objects: React.FC = () => {
     const category = p.category?.toLowerCase() || "";
     const subCat = p.subCategory?.toLowerCase() || "";
 
-    if (category !== "objects" || p.toHomePage) return false;
+    if (category !== "objects") return false;
     if (!subcategory || subcategory.toLowerCase() === "all") return true;
     return subCat === subcategory.toLowerCase();
   });
@@ -59,10 +59,10 @@ const Objects: React.FC = () => {
           py-1
           font-serifBrand
           font-medium
-          text-md sm:text-base
+          text-lg 
           whitespace-nowrap
           transition-colors duration-300
-              ${isActive ? "text-[#0000B5] underline underline-offset-6" : "text-[#0000B5] hover:underline underline-offset-6"}
+              ${isActive ? "text-[#0000D3] underline underline-offset-6" : "text-[#0000D3] hover:underline underline-offset-6"}
         `}
             >
               {sub.charAt(0).toUpperCase() + sub.slice(1)}
@@ -113,19 +113,17 @@ const Objects: React.FC = () => {
 
                 {/* Overlay */}
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 sm:p-6 text-white pointer-events-none">
-                  <h2 className="text-lg sm:text-xl font-semibold">{project.title}</h2>
+                  <h2 className="text-lg sm:text-xl font-serifBrand font-medium ">{project.title}</h2>
                 </div>
               </div>
             ))}
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-[60vh] text-center">
-            <h2 className="text-4xl sm:text-5xl text-[#0000B5] font-serifBrand font-medium mb-4 animate-pulse">Coming Soon</h2>
-            <p className="text-base sm:text-lg text-[#0000B5] font-sansBrand font-normal max-w-md">
-              Exciting new designs are on their way in our <span className="font-semibold">{subcategory ? subcategory.charAt(0).toUpperCase() + subcategory.slice(1) : "Objects"}</span> collection.
-            </p>
-            <div className="mt-8">
-              <div className="w-24 h-1 bg-[#0000B5] mx-auto rounded-full animate-bounce"></div>
+            {/* Loader */}
+            <div className="relative w-20 h-20 mb-8">
+              <div className="absolute inset-0 border-2 border-[#0000D3]/30 rounded-full"></div>
+              <div className="absolute inset-0 border-2 border-[#0000D3] border-t-transparent rounded-full animate-spin"></div>
             </div>
           </div>
         )}

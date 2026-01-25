@@ -47,10 +47,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "f
       }}
     >
       {/* ---------- MEDIA ---------- */}
-      <div
-        className="relative w-full overflow-hidden md:h-full"
-        style={{ aspectRatio }} // ✅ mobile only
-      >
+      <div className="relative w-full overflow-hidden md:h-full" style={!hasVideoFile ? { aspectRatio } : undefined}>
         {hasVideoFile ? (
           isVideo ? (
             <video
@@ -60,10 +57,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "f
               muted
               playsInline
               className="
-                w-full h-full object-cover
-                md:absolute md:inset-0
-                md:w-full md:h-full
-              "
+          w-full h-auto object-cover
+          md:absolute md:inset-0
+          md:w-full md:h-screen
+        "
             />
           ) : (
             <img
@@ -71,10 +68,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "f
               alt={project.title}
               draggable={false}
               className="
-                w-full h-auto object-contain block
-                md:absolute md:inset-0
-                md:w-full md:h-full md:object-cover
-              "
+          w-full h-auto object-contain block
+          md:absolute md:inset-0
+          md:w-full md:h-full md:object-cover
+        "
             />
           )
         ) : project.images?.[0] ? (
@@ -83,35 +80,30 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "f
             alt={project.title}
             draggable={false}
             className="
-              w-full h-auto object-contain block
-              md:absolute md:inset-0
-              md:w-full md:h-full md:object-cover
-            "
+        w-full h-auto object-contain block
+        md:absolute md:inset-0
+        md:w-full md:h-full md:object-cover
+      "
           />
         ) : (
-          <div className="w-full h-[300px] flex items-center justify-center bg-gray-100 text-gray-500">No Preview</div>
+          <div className="w-full h-[300px] flex items-center justify-center bg-[#0000D3] text-[#0000D3]">No Preview</div>
         )}
       </div>
 
       {/* ---------- CENTER LOGO ---------- */}
       {project.homePageOrder === 1 && (
         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+          {" "}
           <img
             src={logoWhite}
             alt="Linedori Logo"
             draggable={false}
-            className="
-              h-7 sm:h-10 md:h-14 lg:h-20 xl:h-24
-              w-auto
-              select-none
-              pointer-events-auto
-              cursor-pointer
-            "
+            className=" h-7 sm:h-10 md:h-14 lg:h-20 xl:h-24 w-auto select-none pointer-events-auto cursor-pointer "
             onClick={(e) => {
               e.stopPropagation();
               window.location.reload();
             }}
-          />
+          />{" "}
         </div>
       )}
 

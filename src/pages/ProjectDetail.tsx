@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import type { Project } from "../types/Project";
 import Header from "@/components/layout/Header";
-import { FileDown, X } from "lucide-react";
+import { X, ArrowRight, ArrowLeft, Plus, Minus } from "lucide-react";
 import ObjectsContact from "./ObjectsContact";
 
 const ProjectDetail: React.FC = () => {
@@ -21,6 +21,8 @@ const ProjectDetail: React.FC = () => {
 
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchEndX, setTouchEndX] = useState<number | null>(null);
+  const zoomIn = () => setZoom((z) => Math.min(z + 0.25, 3));
+  const zoomOut = () => setZoom((z) => Math.max(z - 0.25, 1));
 
   /* ---------------- FETCH PROJECT ---------------- */
   useEffect(() => {
@@ -99,6 +101,16 @@ const ProjectDetail: React.FC = () => {
 
   if (!project) return <p className="pt-20 text-center">Loading...</p>;
 
+  const totalImages = project.images.length;
+
+  const goPrev = () => {
+    setSelectedIndex((prev) => (prev === 0 ? totalImages - 1 : prev! - 1));
+  };
+
+  const goNext = () => {
+    setSelectedIndex((prev) => (prev === totalImages - 1 ? 0 : prev! + 1));
+  };
+
   return (
     <div className="w-full overflow-x-hidden">
       <Header visible={headerVisible} />
@@ -134,13 +146,13 @@ const ProjectDetail: React.FC = () => {
       </div>
 
       {/* ---------------- INFO SECTION ---------------- */}
-      <div className="container mx-auto px-6 md:px-10 py-14 md:mt-3">
-        <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div className="text-center flex flex-col items-center gap-6">
-            <h2 className="text-xl md:text-3xl font-bold text-[#0000B5]">{project.title}</h2>
+      <div className="container px-6 md:px-10 py-14">
+        <div className="grid md:grid-cols-2 items-center">
+          <div className="md:text-center flex flex-col gap-6">
+            <h2 className="text-xl sm:text-left md:text-center md:text-2xl font-serifBrand font-medium text-[#0000D3]">{project.title}</h2>
 
             {project.contactDescription && (
-              <ul className="space-y-2 text-[#0000B5] font-sansBrand font-semibold">
+              <ul className="space-y-2 text-[#0000D3] sm:text-left md:text-center font-serifBrand font-medium">
                 {project.contactDescription
                   .split("\n")
                   .filter(Boolean)
@@ -152,17 +164,15 @@ const ProjectDetail: React.FC = () => {
 
             <div className="flex gap-6">
               {project.pdfFile && (
-                <a href={`${backendUrl}/${project.pdfFile}`} target="_blank" rel="noopener noreferrer" className="inline-flex font-semibold hover:underline transition items-center gap-2 text-[#0000B5] underline-offset-4">
-                  <FileDown className="w-5 h-5" />
-                  specs
+                <a href={`${backendUrl}/${project.pdfFile}`} target="_blank" rel="noopener noreferrer" className="inline-flex font-serifBrand font-medium hover:underline transition items-center gap-2 text-[#0000D3] underline-offset-4">
+                  Specs
                 </a>
               )}
-
-              <ObjectsContact projectTitle={project.title} />
+              {project.category == "Objects" && <ObjectsContact projectTitle={project.title} />}
             </div>
           </div>
 
-          <div className="text-[#0000B5] font-sansBrand font-semibold leading-relaxed space-y-4">
+          <div className="text-[#0000D3] font-sansBrand font-normal leading-relaxed space-y-4">
             {project.description?.split(/\n\s*\n/).map((p, i) => (
               <p key={i}>{p}</p>
             ))}
@@ -209,10 +219,10 @@ const ProjectDetail: React.FC = () => {
       </div>
 
       {/* ---------------- FULLSCREEN MODAL ---------------- */}
-      {selectedIndex !== null && (
+      {project && selectedIndex !== null && (
         <div
           ref={zoomRef}
-          className="fixed inset-0 z-[99999] bg-black flex items-center justify-center"
+          className="fixed inset-0 z-[99999] bg-[#ffff] flex items-center justify-center"
           onClick={(e) => {
             if (e.target === e.currentTarget) closeModal();
           }}
@@ -221,16 +231,63 @@ const ProjectDetail: React.FC = () => {
           onTouchEnd={handleTouchEnd}
         >
           <div className="relative w-full h-full flex items-center justify-center">
-            <img src={`${backendUrl}/${project.images[selectedIndex]}`} className="object-contain max-w-full max-h-full" style={{ transform: `scale(${zoom})` }} />
+            {/* IMAGE */}
+            <img src={`${backendUrl}/${project.images[selectedIndex]}`} className="object-contain max-w-full max-h-full transition-transform duration-300" style={{ transform: `scale(${zoom})` }} draggable={false} />
 
+            {/* PREVIOUS */}
             <button
               type="button"
               onClick={(e) => {
-                e.preventDefault();
+                e.stopPropagation();
+                goPrev();
+              }}
+              className="absolute left-4 md:left-8 text-black p-3 rounded-full bg-grey/40 hover:bg-grey/60 cursor-pointer"
+            >
+              <ArrowLeft size={34} />
+            </button>
+
+            {/* NEXT */}
+            <button
+              type="button"
+              onClick={(e) => {
+                e.stopPropagation();
+                goNext();
+              }}
+              className="absolute right-4 md:right-8 text-black p-3 rounded-full bg-grey/40 hover:bg-grey/60 cursor-pointer"
+            >
+              <ArrowRight size={34} />
+            </button>
+
+            {/* ZOOM CONTROLS */}
+            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 bg-black/40 px-4 py-2 rounded-full">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  zoomOut();
+                }}
+                className="text-white text-2xl cursor-pointer hover:opacity-80"
+              >
+                <Minus size={17} />
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  zoomIn();
+                }}
+                className="text-white text-2xl cursor-pointer hover:opacity-80"
+              >
+                <Plus size={17} />
+              </button>
+            </div>
+
+            {/* CLOSE */}
+            <button
+              type="button"
+              onClick={(e) => {
                 e.stopPropagation();
                 closeModal();
               }}
-              className="absolute top-6 right-8 text-white cursor-pointer"
+              className="absolute top-6 right-8 text-black cursor-pointer hover:opacity-80"
             >
               <X size={34} />
             </button>

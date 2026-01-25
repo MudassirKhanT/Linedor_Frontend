@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Menu, X, ArrowUp } from "lucide-react";
-import logoBlue from "../../assets/linedori logo.png";
+import logoBlue from "../../assets/linedori logo blue.png";
 import logoWhite from "../../assets/linedori logo white.png";
 
 interface HeaderProps {
@@ -16,6 +16,7 @@ interface NavItem {
 const Header: React.FC<HeaderProps> = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const isHomePage = location.pathname === "/";
 
   const [menuOpen, setMenuOpen] = useState(false);
   const [showTopBtn, setShowTopBtn] = useState(false);
@@ -50,8 +51,8 @@ const Header: React.FC<HeaderProps> = () => {
   }, [location.pathname]);
 
   /* ---------------- STYLES ---------------- */
-  const textColor = isOverlayRoute ? "text-white" : "text-[#0000B5]";
-  const underlineColor = isOverlayRoute ? "after:bg-white" : "after:bg-[#0000B5]";
+  const textColor = isOverlayRoute ? "text-white" : "text-[#0000D3]";
+  const underlineColor = isOverlayRoute ? "after:bg-white" : "after:bg-[#0000D3]";
   const logoSrc = isOverlayRoute ? logoWhite : logoBlue;
 
   const handleLinkClick = () => {
@@ -75,7 +76,7 @@ const Header: React.FC<HeaderProps> = () => {
                 key={item.path}
                 to={item.path}
                 onClick={handleLinkClick}
-                className={`relative ${textColor} font-serifBrand font-medium
+                className={`relative ${textColor} text-lg font-serifBrand font-medium
                   after:content-[''] after:absolute after:left-0 after:-bottom-1
                   after:h-[2px] after:w-full ${underlineColor}
                   after:hidden hover:after:block`}
@@ -87,14 +88,21 @@ const Header: React.FC<HeaderProps> = () => {
         </div>
 
         {/* -------- MOBILE -------- */}
-        <div className="md:hidden flex justify-between items-center px-5 h-16 bg-transparent">
-          <Link to="/" onClick={handleLinkClick}>
-            <img src={logoSrc} alt="Linedori Logo" className="h-5 w-auto object-contain" draggable={false} />
-          </Link>
+        <div className="md:hidden relative h-16 bg-transparent">
+          {!isHomePage && (
+            <div className="absolute left-1/2 top-4 -translate-x-1/2">
+              <Link to="/" onClick={handleLinkClick}>
+                <img src={logoSrc} alt="Linedori Logo" className="h-5 w-auto object-contain" draggable={false} />
+              </Link>
+            </div>
+          )}
 
-          <button className={`${textColor} cursor-pointer`} onClick={() => setMenuOpen(true)}>
-            <Menu size={26} />
-          </button>
+          {/* Menu Button (Right) */}
+          <div className="absolute right-5 top-1/2 -translate-y-1/2">
+            <button className={`${textColor} cursor-pointer`} onClick={() => setMenuOpen(true)}>
+              <Menu size={26} />
+            </button>
+          </div>
         </div>
 
         {/* -------- MOBILE MENU -------- */}
@@ -108,7 +116,7 @@ const Header: React.FC<HeaderProps> = () => {
               <img src={logoBlue} alt="Linedori Logo" className="h-5 w-auto object-contain" draggable={false} />
             </button>
 
-            <nav className="flex flex-col space-y-6 text-lg text-[#0000B5] font-serifBrand font-medium px-8 mt-20">
+            <nav className="flex flex-col space-y-6 text-lg text-[#0000D3] font-serifBrand font-medium px-8 mt-20">
               {navItems.map((item) => (
                 <Link key={item.path} to={item.path} onClick={handleLinkClick} className="hover:opacity-70">
                   {item.label}
@@ -131,7 +139,7 @@ const Header: React.FC<HeaderProps> = () => {
 
       {/* -------- SCROLL TO TOP -------- */}
       {showTopBtn && (
-        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="fixed bottom-6 right-6 z-[9999] p-2.5 rounded-full bg-black text-white hover:bg-black/80 transition-all">
+        <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="fixed bottom-6 right-6 z-[9999] p-2.5 rounded-full bg-[#0000D3] text-white hover:bg-[#0000D3]/80 transition-all cursor-pointer">
           <ArrowUp size={18} strokeWidth={2.2} />
         </button>
       )}
