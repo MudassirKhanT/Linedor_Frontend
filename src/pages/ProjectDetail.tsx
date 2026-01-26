@@ -170,13 +170,46 @@ const ProjectDetail: React.FC = () => {
               </ul>
             )}
 
-            <div className="flex gap-6">
+            {/* ---------------- SPECS & CONTACT ---------------- */}
+            <div className="flex flex-col md:flex-row md:justify-center gap-4 mt-1">
+              {/* Specs PDF */}
               {project.pdfFile && (
-                <a href={`${backendUrl}/${project.pdfFile}`} target="_blank" rel="noopener noreferrer" className="inline-flex font-serifBrand font-medium hover:underline transition items-center gap-2 text-[#0000D3] underline-offset-4">
+                <a
+                  href={`${backendUrl}/${project.pdfFile}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="
+        inline-flex
+        items-center
+        justify-center
+        gap-2
+        px-4
+        py-2
+        text-base
+        font-serifBrand
+        font-medium
+        text-[#0000D3]
+        border
+        border-[#0000D3]
+        rounded-md
+        cursor-pointer
+        transition
+        hover:bg-[#0000D3]
+        hover:text-white
+        active:scale-95
+        w-fit
+      "
+                >
                   Specs
                 </a>
               )}
-              {project.category == "Objects" && <ObjectsContact projectTitle={project.title} />}
+
+              {/* Objects Contact */}
+              {project.category === "Objects" && (
+                <div className="mb-2 md:mb-0">
+                  <ObjectsContact projectTitle={project.title} />
+                </div>
+              )}
             </div>
           </div>
 

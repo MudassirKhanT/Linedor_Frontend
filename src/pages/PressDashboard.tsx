@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "../services/api";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
+import { AxiosError } from "axios";
 
 /* ---------------- TYPES ---------------- */
 interface PressItem {
@@ -62,6 +63,12 @@ const PressDashboard: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [alert]);
+  const getErrorMessage = (error: unknown, fallback: string) => {
+    if (error instanceof AxiosError) {
+      return error.response?.data?.message || fallback;
+    }
+    return fallback;
+  };
 
   /* ---------------- FETCH PRESS ---------------- */
   const fetchPress = async () => {
@@ -76,8 +83,11 @@ const PressDashboard: React.FC = () => {
 
       setPress(sorted);
       setCurrentPage(1);
-    } catch {
-      setAlert({ type: "error", message: "Failed to load press ❌" });
+    } catch (error: unknown) {
+      setAlert({
+        type: "error",
+        message: getErrorMessage(error, "Failed to load press ❌"),
+      });
     }
   };
 
@@ -123,8 +133,11 @@ const PressDashboard: React.FC = () => {
       if (fileInputRef.current) fileInputRef.current.value = "";
 
       fetchPress();
-    } catch {
-      setAlert({ type: "error", message: "Something went wrong ❌" });
+    } catch (error: unknown) {
+      setAlert({
+        type: "error",
+        message: getErrorMessage(error, "Something went wrong ❌"),
+      });
     }
   };
 
@@ -151,8 +164,11 @@ const PressDashboard: React.FC = () => {
       await axios.delete(`/press/${id}`);
       setAlert({ type: "success", message: "Press deleted successfully 🗑️" });
       fetchPress();
-    } catch {
-      setAlert({ type: "error", message: "Failed to delete press ❌" });
+    } catch (error: unknown) {
+      setAlert({
+        type: "error",
+        message: getErrorMessage(error, "Failed to delete press ❌"),
+      });
     }
   };
 

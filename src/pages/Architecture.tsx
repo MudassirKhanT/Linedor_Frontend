@@ -99,10 +99,6 @@ const Architecture: React.FC = () => {
                   <img
                     src={`${backendUrl}/${project.images[0]}`}
                     alt={project.title}
-                    onLoad={(e) => {
-                      const img = e.currentTarget;
-                      img.style.objectFit = img.naturalHeight > img.naturalWidth ? "contain" : "cover";
-                    }}
                     className="
                   w-full h-full
                   transition-opacity duration-700 ease-in-out

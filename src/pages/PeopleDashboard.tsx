@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import axios from "../services/api";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
+import { AxiosError } from "axios";
 
 /* ---------------- TYPES ---------------- */
 interface Member {
@@ -48,14 +49,23 @@ const PeopleDashboard: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [alert]);
+  const getErrorMessage = (error: unknown, fallback: string) => {
+    if (error instanceof AxiosError) {
+      return error.response?.data?.message || fallback;
+    }
+    return fallback;
+  };
 
   /* ---------------- FETCH TEAM ---------------- */
   const fetchTeam = async () => {
     try {
       const res = await axios.get<Member[]>("/team");
       setTeam(res.data);
-    } catch {
-      setAlert({ type: "error", message: "Failed to load team members ❌" });
+    } catch (error: unknown) {
+      setAlert({
+        type: "error",
+        message: getErrorMessage(error, "Failed to load team members ❌"),
+      });
     }
   };
 
@@ -96,8 +106,11 @@ const PeopleDashboard: React.FC = () => {
 
       resetForm();
       fetchTeam();
-    } catch {
-      setAlert({ type: "error", message: "Something went wrong ❌" });
+    } catch (error: unknown) {
+      setAlert({
+        type: "error",
+        message: getErrorMessage(error, "Something went wrong ❌"),
+      });
     }
   };
 
@@ -128,8 +141,11 @@ const PeopleDashboard: React.FC = () => {
       await axios.delete(`/team/${id}`);
       setAlert({ type: "success", message: "Team member deleted successfully 🗑️" });
       fetchTeam();
-    } catch {
-      setAlert({ type: "error", message: "Failed to delete team member ❌" });
+    } catch (error: unknown) {
+      setAlert({
+        type: "error",
+        message: getErrorMessage(error, "Failed to delete team member ❌"),
+      });
     }
   };
 

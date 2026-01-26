@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { Edit, Trash2 } from "lucide-react";
+import axios from "axios";
 
 interface Studio {
   _id: string;
@@ -47,7 +48,12 @@ const StudioDashboard = () => {
       return () => clearTimeout(timer);
     }
   }, [alert]);
-
+  const getErrorMessage = (err: unknown, fallback: string) => {
+    if (axios.isAxiosError(err)) {
+      return err.response?.data?.message || fallback;
+    }
+    return fallback;
+  };
   /* ---------- FETCH ---------- */
   const fetchStudios = async () => {
     try {
@@ -58,8 +64,11 @@ const StudioDashboard = () => {
         return bTime - aTime;
       });
       setStudios(sorted);
-    } catch {
-      setAlert({ type: "error", message: "Failed to load studios ❌" });
+    } catch (err: unknown) {
+      setAlert({
+        type: "error",
+        message: getErrorMessage(err, "Failed to load studios ❌"),
+      });
     }
   };
 
@@ -102,8 +111,11 @@ const StudioDashboard = () => {
       if (fileRef.current) fileRef.current.value = "";
 
       fetchStudios();
-    } catch {
-      setAlert({ type: "error", message: "Failed to save studio ❌" });
+    } catch (err: unknown) {
+      setAlert({
+        type: "error",
+        message: getErrorMessage(err, "Failed to save studio ❌"),
+      });
     }
   };
 
@@ -130,8 +142,11 @@ const StudioDashboard = () => {
       await API.delete(`/studio/${id}`);
       setAlert({ type: "success", message: "Studio deleted successfully 🗑️" });
       fetchStudios();
-    } catch {
-      setAlert({ type: "error", message: "Failed to delete studio ❌" });
+    } catch (err: unknown) {
+      setAlert({
+        type: "error",
+        message: getErrorMessage(err, "Failed to delete studio ❌"),
+      });
     }
   };
 

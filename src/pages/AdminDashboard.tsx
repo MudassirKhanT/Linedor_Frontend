@@ -10,6 +10,7 @@ import { DndContext, closestCenter, PointerSensor, useSensor, useSensors } from 
 import { SortableContext, arrayMove, useSortable, rectSortingStrategy } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import type { DragEndEvent } from "@dnd-kit/core";
+import { AxiosError } from "axios";
 
 interface Project {
   _id: string;
@@ -26,6 +27,11 @@ interface Project {
   homePageOrder?: number;
   createdAt: string; // Add this
   updatedAt?: string;
+}
+interface ApiErrorResponse {
+  success?: boolean;
+  code?: string;
+  message?: string;
 }
 
 interface PreviewFile {
@@ -101,6 +107,13 @@ const ProjectsDashboard = () => {
   useEffect(() => {
     fetchProjects();
   }, []);
+  const getApiErrorMessage = (error: unknown, fallback: string): string => {
+    if (error instanceof AxiosError) {
+      return (error.response?.data as ApiErrorResponse)?.message || fallback;
+    }
+
+    return fallback;
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = Array.from(e.target.files || []);
@@ -178,11 +191,12 @@ const ProjectsDashboard = () => {
       resetForm();
 
       fetchProjects();
-    } catch (err) {
-      console.error("Error saving project:", err);
+    } catch (error: unknown) {
+      console.error("Error saving project:", error);
+
       setAlertMsg({
         type: "error",
-        message: "Failed to save project.",
+        message: getApiErrorMessage(error, "Failed to save project"),
       });
     }
   };
@@ -238,12 +252,12 @@ const ProjectsDashboard = () => {
       });
 
       fetchProjects();
-    } catch (err) {
-      console.error(err);
+    } catch (error: unknown) {
+      console.error(error);
 
       setAlertMsg({
         type: "error",
-        message: "Failed to delete project.",
+        message: getApiErrorMessage(error, "Failed to delete project"),
       });
     }
   };
