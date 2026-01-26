@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Header from "@/components/layout/Header";
 import axios from "axios";
 import { useMemo } from "react";
+import { ArrowRight } from "lucide-react";
 
 interface Studio {
   _id: string;
@@ -83,15 +84,23 @@ const About = () => {
 
       {/* ---------------- TABS ---------------- */}
       <div
-        className="container  px-4 pt-[100px] pb-4 flex flex-nowrap sm:flex-wrap
-  gap-4 overflow-x-auto"
+        className="container mx-auto
+    px-3
+    md:px-7
+    pt-[100px] pb-4
+    flex flex-nowrap sm:flex-wrap
+    gap-2 sm:gap-4
+    justify-start
+    max-w-full
+    overflow-x-auto"
       >
         {tabs.map((tab) => (
           <button
             key={tab}
             onClick={() => handleTabClick(tab)}
             className={`
-              px-3 py-1
+              mt-2
+            px-2  sm:px-3 py-1
               font-serifBrand font-medium
               cursor-pointer
               text-lg
@@ -124,7 +133,7 @@ const About = () => {
       <section id="people" className="bg-white py-16 sm:py-15 2xl:max-w-[1400px] 2xl:mx-auto">
         {/* ---------- HEADING ---------- */}
         <div className="text-center  sm:mb-15 px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serifBrand font-medium text-[#0000D3] sm:mb-4">Our Team</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serifBrand font-medium text-[#0000D3] sm:mb-4">Team</h2>
         </div>
 
         {/* ---------- TEAM LIST ---------- */}
@@ -155,9 +164,9 @@ const About = () => {
 
               {/* CONTENT */}
               <div className=" md:max-w-md">
-                <p className="text-[#0000D3] text-center md:text-left font-serifBrand  text-xl sm:text-2xl font-medium leading-tight mb-1">{member.name}</p>
+                <p className="text-[#0000D3] text-center md:text-left font-serifBrand  text-xl sm:text-2xl font-medium leading-tight">{member.name}</p>
 
-                {member.role && <p className="text-[#0000D3] text-center md:text-left font-serifBrand font-medium text-base sm:text-lg lg:text-xl mb-3">{member.role}</p>}
+                {member.role && <p className="text-[#0000D3] text-center md:text-left font-serifBrand font-medium text-base sm:text-lg lg:text-xl mb-5">{member.role}</p>}
 
                 <p className="text-[#0000D3]  sm:text-left font-sansBrand font-normal text-sm sm:text-base leading-relaxed">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
               </div>
@@ -168,10 +177,13 @@ const About = () => {
 
       {/* ================= PRESS ================= */}
       <section id="press" className=" text-center">
-        <h2 className="text-3xl font-serifBrand font-medium text-[#0000D3] mb-4">Press & Media</h2>
-        <p className="text-[#0000D3] max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
+        <h2 className="text-3xl font-serifBrand font-medium text-[#0000D3] mb-4">Press</h2>
+        <p className="text-[#0000D3] font-sansBrand font-normal max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
         <a href="/press" className="text-[#0000D3] font-serifBrand font-medium hover:underline">
-          View Press →
+          <span className="inline-flex items-center gap-1 leading-none">
+            View Press
+            <ArrowRight size={20} className="translate-y-[2px]" />
+          </span>
         </a>
       </section>
     </div>

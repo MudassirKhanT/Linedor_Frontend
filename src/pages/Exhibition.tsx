@@ -76,8 +76,8 @@ const Exhibition: React.FC = () => {
                   )}
                 </div>
 
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 sm:p-6 text-white">
-                  <h2 className="text-lg sm:text-xl font-serifBrand font-medium ">{project.title}</h2>
+                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 sm:p-5 text-white">
+                  <h2 className="text-md md:text-lg font-serifBrand font-medium ">{project.title}</h2>
                 </div>
               </div>
             ))}

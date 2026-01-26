@@ -156,11 +156,11 @@ const ProjectDetail: React.FC = () => {
       {/* ---------------- INFO SECTION ---------------- */}
       <div className="container px-6 md:px-10 py-14">
         <div className="grid md:grid-cols-2 items-center">
-          <div className="md:text-center flex flex-col gap-6">
-            <h2 className="text-xl sm:text-left md:text-center md:text-2xl font-serifBrand font-medium text-[#0000D3]">{project.title}</h2>
+          <div className="md:text-center flex flex-col">
+            <h2 className="text-xl sm:text-left md:text-center md:text-2xl font-serifBrand font-medium mb-3 text-[#0000D3]">{project.title}</h2>
 
             {project.contactDescription && (
-              <ul className="space-y-2 text-[#0000D3] sm:text-left md:text-center font-serifBrand font-medium">
+              <ul className="text-[#0000D3] sm:text-left md:text-center font-sansBrand font-normal text-lg">
                 {project.contactDescription
                   .split("\n")
                   .filter(Boolean)
@@ -213,7 +213,7 @@ const ProjectDetail: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-[#0000D3] font-sansBrand font-normal leading-relaxed space-y-4">
+          <div className="text-[#0000D3] font-sansBrand space-y-4 font-normal text-lg">
             {project.description?.split(/\n\s*\n/).map((p, i) => (
               <p key={i}>{p}</p>
             ))}

@@ -50,7 +50,8 @@ const Interior: React.FC = () => {
       <div
         className="
     container mx-auto
-    px-4
+    px-3
+    md:px-7
     pt-[100px] pb-4
     flex flex-nowrap sm:flex-wrap
     gap-2 sm:gap-4
@@ -66,7 +67,8 @@ const Interior: React.FC = () => {
               key={sub}
               to={`/interior/${sub}`}
               className={`
-          px-2 sm:px-3
+           mt-2
+            px-2  sm:px-3
           py-1
           font-serifBrand
           font-medium
@@ -110,10 +112,6 @@ const Interior: React.FC = () => {
                     <img
                       src={`${backendUrl}/${project.images[1]}`}
                       alt={project.title}
-                      // onLoad={(e) => {
-                      //   const img = e.currentTarget;
-                      //   img.style.objectFit = img.naturalHeight > img.naturalWidth ? "contain" : "cover";
-                      // }}
                       className="
                   absolute top-0 left-0
                   w-full h-full
@@ -124,8 +122,8 @@ const Interior: React.FC = () => {
                   )}
                 </div>
 
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 sm:p-6 text-white pointer-events-none">
-                  <h2 className="text-lg sm:text-xl font-serifBrand font-medium ">{project.title}</h2>
+                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 md:px-6 text-white pointer-events-none">
+                  <h2 className="text-md md:text-lg font-serifBrand font-medium ">{project.title}</h2>
                 </div>
               </div>
             ))}

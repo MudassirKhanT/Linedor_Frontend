@@ -49,7 +49,8 @@ const Architecture: React.FC = () => {
       <div
         className="
     container mx-auto
-    px-4
+    px-3
+    md:px-7
     pt-[100px] pb-4
     flex flex-nowrap sm:flex-wrap
     gap-2 sm:gap-4
@@ -65,7 +66,8 @@ const Architecture: React.FC = () => {
               key={sub}
               to={`/architecture/${sub}`}
               className={`
-            px-2 sm:px-3
+                mt-2
+            px-2  sm:px-3
             py-1
             font-serifBrand
             font-medium
@@ -120,8 +122,8 @@ const Architecture: React.FC = () => {
                   )}
                 </div>
 
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 sm:p-6 text-white pointer-events-none">
-                  <h2 className="text-lg sm:text-xl font-serifBrand font-medium ">{project.title}</h2>
+                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 md:px-6 text-white pointer-events-none">
+                  <h2 className="text-md md:text-lg font-serifBrand font-medium mb-1">{project.title}</h2>
                 </div>
               </div>
             ))}

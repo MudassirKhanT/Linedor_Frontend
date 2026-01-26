@@ -68,7 +68,8 @@ const Objects: React.FC = () => {
       <div
         className="
           container mx-auto
-          px-4
+          px-3
+    md:px-7
           pt-[100px] pb-4
           flex flex-nowrap sm:flex-wrap
           gap-2 sm:gap-4
@@ -84,7 +85,8 @@ const Objects: React.FC = () => {
               key={sub}
               to={`/objects/${sub}`}
               className={`
-                px-2 sm:px-3
+                mt-2
+            px-2  sm:px-3
                 py-1
                 font-serifBrand
                 font-medium
@@ -101,7 +103,7 @@ const Objects: React.FC = () => {
       </div>
 
       {/* ---------------- CONTENT ---------------- */}
-      <div className="w-full px-4 pb-10">
+      <div className="w-full">
         {/* 🔄 LOADING */}
         {loading && (
           <div className="flex items-center justify-center h-[60vh]">
@@ -125,7 +127,7 @@ const Objects: React.FC = () => {
                   w-full
                 "
               >
-                <div className="absolute inset-0">
+                <div className="absolute inset-0 h-full w-full">
                   <img
                     src={`${backendUrl}/${project.images?.[0]}`}
                     alt={project.title}
@@ -153,8 +155,8 @@ const Objects: React.FC = () => {
                 </div>
 
                 {/* Overlay */}
-                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-4 sm:p-6 text-white pointer-events-none">
-                  <h2 className="text-lg sm:text-xl font-serifBrand font-medium">{project.title}</h2>
+                <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 md:p-5 text-white pointer-events-none">
+                  <h2 className="text-md md:text-lg font-serifBrand font-medium">{project.title}</h2>
                 </div>
               </div>
             ))}

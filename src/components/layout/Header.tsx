@@ -65,12 +65,12 @@ const Header: React.FC<HeaderProps> = () => {
       {/* ================= HEADER ================= */}
       <header className={`${isOverlayRoute ? "absolute" : "relative"} top-0 left-0 w-full z-40 transition-all duration-300`}>
         {/* -------- DESKTOP -------- */}
-        <div className="hidden md:flex justify-between items-center h-16 px-8 bg-transparent">
+        <div className="hidden md:flex justify-between items-center h-16 px-8 bg-transparent mx-2">
           <Link to="/" onClick={handleLinkClick}>
-            <img src={logoSrc} alt="Linedori Logo" className="h-7 md:h-8 w-auto object-contain" draggable={false} />
+            <img src={logoSrc} alt="Linedori Logo" className="h-7 md:h-8 w-auto object-contain mt-3" draggable={false} />
           </Link>
 
-          <nav className="flex space-x-8">
+          <nav className="flex space-x-8 mt-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}
@@ -78,7 +78,7 @@ const Header: React.FC<HeaderProps> = () => {
                 onClick={handleLinkClick}
                 className={`relative ${textColor} text-lg font-serifBrand font-medium
                   after:content-[''] after:absolute after:left-0 after:-bottom-1
-                  after:h-[2px] after:w-full ${underlineColor}
+                  after:h-[1px] after:w-full ${underlineColor}
                   after:hidden hover:after:block`}
               >
                 {item.label}
@@ -90,7 +90,7 @@ const Header: React.FC<HeaderProps> = () => {
         {/* -------- MOBILE -------- */}
         <div className="md:hidden relative h-16 bg-transparent">
           {!isHomePage && (
-            <div className="absolute left-1/2 top-4 -translate-x-1/2">
+            <div className="absolute top-5 left-5">
               <Link to="/" onClick={handleLinkClick}>
                 <img src={logoSrc} alt="Linedori Logo" className="h-5 w-auto object-contain" draggable={false} />
               </Link>
