@@ -157,10 +157,10 @@ const ProjectDetail: React.FC = () => {
       <div className="container px-6 md:px-10 py-14">
         <div className="grid md:grid-cols-2 items-center">
           <div className="md:text-center flex flex-col">
-            <h2 className="text-xl sm:text-left md:text-center md:text-2xl font-serifBrand font-medium mb-3 text-[#0000D3]">{project.title}</h2>
+            <h2 className="text-xl sm:text-left md:text-center md:text-2xl font-serifBrand font-normal mb-5 text-[#0000D3]">{project.title}</h2>
 
             {project.contactDescription && (
-              <ul className="text-[#0000D3] sm:text-left md:text-center font-sansBrand font-normal text-lg">
+              <ul className="text-[#0000D3] sm:text-left md:text-center font-sansBrand font-normal text-sm sm:text-base">
                 {project.contactDescription
                   .split("\n")
                   .filter(Boolean)
@@ -171,7 +171,7 @@ const ProjectDetail: React.FC = () => {
             )}
 
             {/* ---------------- SPECS & CONTACT ---------------- */}
-            <div className="flex flex-col md:flex-row md:justify-center gap-4 mt-1">
+            <div className="flex flex-col md:flex-row md:justify-center gap-4 mt-7">
               {/* Specs PDF */}
               {project.pdfFile && (
                 <a
@@ -187,11 +187,11 @@ const ProjectDetail: React.FC = () => {
         py-2
         text-base
         font-serifBrand
-        font-medium
+        font-normal
         text-[#0000D3]
         border
         border-[#0000D3]
-        rounded-md
+        
         cursor-pointer
         transition
         hover:bg-[#0000D3]
@@ -213,7 +213,7 @@ const ProjectDetail: React.FC = () => {
             </div>
           </div>
 
-          <div className="text-[#0000D3] font-sansBrand space-y-4 font-normal text-lg">
+          <div className="text-[#0000D3] font-sansBrand space-y-4 font-normal text-base md:text-lg">
             {project.description?.split(/\n\s*\n/).map((p, i) => (
               <p key={i}>{p}</p>
             ))}

@@ -85,16 +85,17 @@ const Objects: React.FC = () => {
               key={sub}
               to={`/objects/${sub}`}
               className={`
-                mt-2
-            px-2  sm:px-3
-                py-1
-                font-serifBrand
-                font-medium
-                text-lg
-                whitespace-nowrap
-                transition-colors duration-300
-                ${isActive ? "text-[#0000D3] underline underline-offset-6" : "text-[#0000D3] hover:underline underline-offset-6"}
-              `}
+  mt-2
+  px-2 sm:px-3
+  py-1
+  font-serifBrand
+  font-normal
+  text-lg
+  whitespace-nowrap
+  transition-colors duration-300
+  decoration-[0.5px]
+  ${isActive ? "text-[#0000D3] underline underline-offset-6" : "text-[#0000D3] hover:underline underline-offset-6"}
+`}
             >
               {sub.charAt(0).toUpperCase() + sub.slice(1)}
             </Link>
@@ -156,7 +157,7 @@ const Objects: React.FC = () => {
 
                 {/* Overlay */}
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 md:p-5 text-white pointer-events-none">
-                  <h2 className="text-md md:text-lg font-serifBrand font-medium">{project.title}</h2>
+                  <h2 className="text-md md:text-lg font-serifBrand font-normal">{project.title}</h2>
                 </div>
               </div>
             ))}
@@ -166,7 +167,7 @@ const Objects: React.FC = () => {
         {/* 🚧 EMPTY STATE */}
         {!loading && filteredProjects.length === 0 && (
           <div className="flex flex-col items-center justify-center h-[60vh] text-center">
-            <h2 className="text-4xl sm:text-5xl text-[#0000D3] font-serifBrand font-medium  mb-4 animate-pulse">Coming Soon</h2>
+            <h2 className="text-4xl sm:text-5xl text-[#0000D3] font-serifBrand font-normal  mb-4 animate-pulse">Coming Soon</h2>
             <p className="text-base sm:text-lg text-[#0000D3] font-sansBrand font-normal  max-w-md">Exciting new designs are on their way in our collection.</p>
             <div className="mt-8">
               <div className="w-24 h-1 bg-[#0000D3] mx-auto rounded-full animate-bounce"></div>

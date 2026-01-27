@@ -99,14 +99,15 @@ const About = () => {
             key={tab}
             onClick={() => handleTabClick(tab)}
             className={`
-              mt-2
-            px-2  sm:px-3 py-1
-              font-serifBrand font-medium
-              cursor-pointer
-              text-lg
-              transition-colors
-              ${activeTab === tab ? "text-[#0000D3] underline underline-offset-6" : "text-[#0000D3] hover:underline underline-offset-6"}
-            `}
+  mt-2
+  px-2 sm:px-3 py-1
+  font-serifBrand font-normal
+  cursor-pointer
+  text-lg
+  transition-colors
+  decoration-[0.5px]
+  ${activeTab === tab ? "text-[#0000D3] underline underline-offset-6" : "text-[#0000D3] hover:underline underline-offset-6"}
+`}
           >
             {tab.charAt(0).toUpperCase() + tab.slice(1)}
           </button>
@@ -118,14 +119,13 @@ const About = () => {
         <div className="w-full md:w-1/2 h-[40vh] md:h-screen">{studio?.image ? isVideo(studio.image) ? <video src={`${backendUrl}${studio.image}`} autoPlay muted loop playsInline className="w-full h-full object-cover outline-none" /> : <img src={`${backendUrl}${studio.image}`} className="w-full h-full object-cover" /> : <div className="w-full h-full bg-gray-200 flex items-center justify-center">No Media</div>}</div>
 
         {/* CONTENT — NO TOP GAP */}
-        <div className="w-full md:w-1/2 px-8 md:px-16 py-5 md:pt-10 pb-8 flex flex-col bg-[#0000D3] ">
-          <p className="text-white font-sansBrand text-base md:text-lg leading-relaxed">{studio?.description}</p>
-
-          {/* <div className="mt-6 space-y-2 font-sansBrand text-[#0000D3]">
-            {studio?.location && <p> {studio.location}</p>}
-            {studio?.contact && <p> {studio.contact}</p>}
-            {studio?.email && <p> {studio.email}</p>}
-          </div> */}
+        <div className="w-full md:w-1/2 px-8 md:px-16 py-5 md:pt-13  flex flex-col bg-[#0000D3] space-y-4 ">
+          {studio?.description?.split(/\n\s*\n/).map((p, i) => (
+            <p className="text-white font-sansBrand text-base md:text-lg leading-relaxed text-justify" key={i}>
+              {p}
+            </p>
+          ))}
+          {/* <p className="text-white font-sansBrand text-base md:text-lg leading-relaxed text-justify">{studio?.description}</p> */}
         </div>
       </section>
 
@@ -133,30 +133,31 @@ const About = () => {
       <section id="people" className="bg-white py-16 sm:py-15 2xl:max-w-[1400px] 2xl:mx-auto">
         {/* ---------- HEADING ---------- */}
         <div className="text-center  sm:mb-15 px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serifBrand font-medium text-[#0000D3] sm:mb-4">Team</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serifBrand font-normal text-[#0000D3] ">Team</h2>
         </div>
 
         {/* ---------- TEAM LIST ---------- */}
-        <div className="max-w-6xl mx-auto flex flex-col space-y-14 px-4 sm:px-6 md:px-12">
+        <div className="w-full  flex flex-col space-y-14  ">
           {team.map((member) => (
             <div
-              key={member._id}
               className="
-          grid grid-cols-1
-          md:grid-cols-[260px_auto]
-          gap-10
-          items-start
-          justify-center
-        "
+    grid grid-cols-1
+    md:grid-cols-[280px_auto]
+    gap-10
+    items-start
+    justify-center
+        md:translate-x-12 lg:translate-x-27
+
+  "
             >
               {/* IMAGE */}
-              <div className="flex justify-center">
+              <div className="flex justify-center ">
                 <img
                   src={member.image ? `${backendUrl}${member.image}` : "https://via.placeholder.com/400x500"}
                   alt={member.name}
                   className="
-              w-[220px] sm:w-[260px]
-              h-[280px] sm:h-[360px]
+              mt-2
+              aspect-[3/4]
               object-cover
             "
                 />
@@ -164,11 +165,11 @@ const About = () => {
 
               {/* CONTENT */}
               <div className=" md:max-w-md">
-                <p className="text-[#0000D3] text-center md:text-left font-serifBrand  text-xl sm:text-2xl font-medium leading-tight">{member.name}</p>
+                <p className="text-[#0000D3] text-center md:text-left font-serifBrand  text-xl sm:text-2xl font-normal leading-tight">{member.name}</p>
 
-                {member.role && <p className="text-[#0000D3] text-center md:text-left font-serifBrand font-medium text-base sm:text-lg lg:text-xl mb-5">{member.role}</p>}
+                {member.role && <p className="text-[#0000D3] text-center md:text-left font-serifBrand font-normal text-base sm:text-lg lg:text-xl mb-5">{member.role}</p>}
 
-                <p className="text-[#0000D3]  sm:text-left font-sansBrand font-normal text-sm sm:text-base leading-relaxed">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
+                <p className="text-[#0000D3]  text-justify font-sansBrand font-normal text-sm sm:text-base leading-relaxed">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
               </div>
             </div>
           ))}
@@ -177,11 +178,11 @@ const About = () => {
 
       {/* ================= PRESS ================= */}
       <section id="press" className=" text-center">
-        <h2 className="text-3xl font-serifBrand font-medium text-[#0000D3] mb-4">Press</h2>
-        <p className="text-[#0000D3] font-sansBrand font-normal max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
-        <a href="/press" className="text-[#0000D3] font-serifBrand font-medium hover:underline">
+        <h2 className="text-3xl font-serifBrand font-normal text-[#0000D3] mb-4">Press</h2>
+        <p className="text-[#0000D3] font-sansBrand font-normal text-sm sm:text-base  max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
+        <a href="/press" className="text-[#0000D3] font-serifBrand font-normal hover:underline">
           <span className="inline-flex items-center gap-1 leading-none">
-            View Press
+            View All Press
             <ArrowRight size={20} className="translate-y-[2px]" />
           </span>
         </a>

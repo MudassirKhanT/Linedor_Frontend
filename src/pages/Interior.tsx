@@ -67,16 +67,17 @@ const Interior: React.FC = () => {
               key={sub}
               to={`/interior/${sub}`}
               className={`
-           mt-2
-            px-2  sm:px-3
-          py-1
-          font-serifBrand
-          font-medium
-          text-lg 
-          whitespace-nowrap
-          transition-colors duration-300
-              ${isActive ? "text-[#0000D3] underline underline-offset-6" : "text-[#0000D3] hover:underline underline-offset-6"}
-        `}
+  mt-2
+  px-2 sm:px-3
+  py-1
+  font-serifBrand
+  font-normal
+  text-lg
+  whitespace-nowrap
+  transition-colors duration-300
+  decoration-[0.5px]
+  ${isActive ? "text-[#0000D3] underline underline-offset-6" : "text-[#0000D3] hover:underline underline-offset-6"}
+`}
             >
               {sub.charAt(0).toUpperCase() + sub.slice(1)}
             </Link>
@@ -123,7 +124,7 @@ const Interior: React.FC = () => {
                 </div>
 
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 md:px-6 text-white pointer-events-none">
-                  <h2 className="text-md md:text-lg font-serifBrand font-medium ">{project.title}</h2>
+                  <h2 className="text-md md:text-lg font-serifBrand font-normal ">{project.title}</h2>
                 </div>
               </div>
             ))}

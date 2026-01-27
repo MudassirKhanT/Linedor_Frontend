@@ -154,7 +154,7 @@ const PeopleDashboard: React.FC = () => {
       {/* ---------------- TOAST ALERT ---------------- */}
       {alert.message && (
         <div
-          className={`fixed top-6 right-6 z-50 animate-slideIn rounded-lg px-5 py-3 shadow-lg border font-medium text-sm
+          className={`fixed top-6 right-6 z-50 animate-slideIn rounded-lg px-5 py-3 shadow-lg border font-normal text-sm
           ${alert.type === "success" ? "bg-green-100 text-green-800 border-green-300" : "bg-red-100 text-red-800 border-red-300"}`}
         >
           {alert.message}

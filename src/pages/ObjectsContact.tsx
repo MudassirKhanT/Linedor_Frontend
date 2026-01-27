@@ -55,11 +55,11 @@ const ObjectsContact: React.FC<Props> = ({ projectTitle }) => {
     py-2
     text-base
     font-serifBrand
-    font-medium
+    font-normal
     text-[#0000D3]
     border
     border-[#0000D3]
-    rounded-md
+    
     cursor-pointer
     transition
     hover:bg-[#0000D3]

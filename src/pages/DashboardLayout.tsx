@@ -18,7 +18,7 @@ const DashboardLayout = () => {
 
         <nav className="flex flex-col gap-3">
           {navItems.map((item) => (
-            <Link key={item.path} to={item.path} className={`px-3 py-2 rounded-md font-medium transition ${location.pathname === item.path ? "bg-gray-700 text-white" : "hover:bg-gray-800 hover:text-gray-200"}`}>
+            <Link key={item.path} to={item.path} className={`px-3 py-2 rounded-md font-normal transition ${location.pathname === item.path ? "bg-gray-700 text-white" : "hover:bg-gray-800 hover:text-gray-200"}`}>
               {item.label}
             </Link>
           ))}

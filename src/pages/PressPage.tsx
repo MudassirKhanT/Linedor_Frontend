@@ -63,17 +63,17 @@ const PressPage = () => {
               <div className="bg-white py-6 px-6">
                 {/* Title + View Press */}
                 <div className="flex items-center justify-between">
-                  <h3 className="text-md font-serifBrand font-medium text-[#0000D3]">{p.title}</h3>
+                  <h3 className="text-md font-serifBrand font-normal text-[#0000D3]">{p.title}</h3>
 
                   {p.link && (
-                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-md font-serifBrand font-medium text-[#0000D3] hover:underline underline-offset-4 whitespace-nowrap">
+                    <a href={p.link} target="_blank" rel="noopener noreferrer" className="text-md font-serifBrand font-normal text-[#0000D3] hover:underline underline-offset-4 whitespace-nowrap">
                       View Press
                     </a>
                   )}
                 </div>
 
                 {/* Date */}
-                <p className="text-sm font-serifBrand font-medium text-[#0000D3]">{formatDateToMonthYear(p.date)}</p>
+                <p className="text-sm font-serifBrand font-normal text-[#0000D3]">{formatDateToMonthYear(p.date)}</p>
 
                 {/* Description */}
                 <p className="text-[#0000D3] font-sansBrand font-normal text-sm  leading-relaxed">{p.description}</p>

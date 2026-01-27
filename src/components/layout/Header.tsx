@@ -70,15 +70,15 @@ const Header: React.FC<HeaderProps> = () => {
             <img src={logoSrc} alt="Linedori Logo" className="h-7 md:h-8 w-auto object-contain mt-3" draggable={false} />
           </Link>
 
-          <nav className="flex space-x-8 mt-2">
+          <nav className="flex space-x-10 mt-2">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 onClick={handleLinkClick}
-                className={`relative ${textColor} text-lg font-serifBrand font-medium
+                className={`relative ${textColor} text-lg font-serifBrand font-normal
                   after:content-[''] after:absolute after:left-0 after:-bottom-1
-                  after:h-[1px] after:w-full ${underlineColor}
+                  after:h-[0.5px] after:w-full ${underlineColor}
                   after:hidden hover:after:block`}
               >
                 {item.label}
@@ -116,7 +116,7 @@ const Header: React.FC<HeaderProps> = () => {
               <img src={logoBlue} alt="Linedori Logo" className="h-5 w-auto object-contain" draggable={false} />
             </button>
 
-            <nav className="flex flex-col space-y-6 text-lg text-[#0000D3] font-serifBrand font-medium px-8 mt-20">
+            <nav className="flex flex-col space-y-6 text-lg text-[#0000D3] font-serifBrand font-normal px-8 mt-20">
               {navItems.map((item) => (
                 <Link key={item.path} to={item.path} onClick={handleLinkClick} className="hover:opacity-70">
                   {item.label}

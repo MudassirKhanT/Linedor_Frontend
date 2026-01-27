@@ -110,7 +110,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "f
       {/* ---------- TITLE ---------- */}
       {!isMedia(project) && (
         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 md:p-5 text-white z-10">
-          <h1 className="text-md md:text-lg font-serifBrand font-medium px-5 mb-2">{project.title}</h1>
+          <h1 className="text-md md:text-lg font-serifBrand font-normal px-5 mb-2">{project.title}</h1>
         </div>
       )}
     </div>

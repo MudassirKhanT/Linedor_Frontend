@@ -351,13 +351,13 @@ const ProjectsDashboard = () => {
 
           {form.category !== "video" && (
             <div className="flex items-center justify-between">
-              <label className="font-medium">Key Project</label>
+              <label className="font-normal">Key Project</label>
               <Switch checked={!!form.isPrior} onCheckedChange={(checked) => setForm({ ...form, isPrior: checked })} />
             </div>
           )}
 
           <div className="flex items-center justify-between">
-            <label className="font-medium">Show on Home Page</label>
+            <label className="font-normal">Show on Home Page</label>
             <Switch checked={!!form.toHomePage} onCheckedChange={(checked) => setForm({ ...form, toHomePage: checked })} />
           </div>
 
@@ -456,7 +456,7 @@ const ProjectsDashboard = () => {
                 {project.toHomePage && <p className="text-sm font-semibold text-green-600">🏠 Home Order: {project.homePageOrder ?? "-"}</p>}
 
                 {project.pdfFile && (
-                  <a href={`${backendUrl}/${project.pdfFile}`} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center justify-center gap-2 bg-black text-white font-medium px-6 py-2 rounded-lg shadow-sm hover:bg-gray-800 transition-all w-full">
+                  <a href={`${backendUrl}/${project.pdfFile}`} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex items-center justify-center gap-2 bg-black text-white font-normal px-6 py-2 rounded-lg shadow-sm hover:bg-gray-800 transition-all w-full">
                     <FileText className="w-5 h-5" />
                     <span>View PDF</span>
                   </a>

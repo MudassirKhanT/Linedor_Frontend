@@ -77,16 +77,16 @@ const Exhibition: React.FC = () => {
                 </div>
 
                 <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 sm:p-5 text-white">
-                  <h2 className="text-md md:text-lg font-serifBrand font-medium ">{project.title}</h2>
+                  <h2 className="text-md md:text-lg font-serifBrand font-normal ">{project.title}</h2>
                 </div>
               </div>
             ))}
           </div>
         ) : (
           <div className="flex flex-col items-center justify-center h-[60vh] text-center">
-            <h2 className="text-4xl sm:text-5xl text-[#0000D3] font-serifBrand font-medium  mb-4 animate-pulse">Coming Soon</h2>
+            <h2 className="text-4xl sm:text-5xl text-[#0000D3] font-serifBrand font-normal  mb-4 animate-pulse">Coming Soon</h2>
             <p className="text-base sm:text-lg text-[#0000D3] font-sansBrand font-normal  max-w-md">
-              Exciting new designs are on their way in our <span className="font-serifBrand font-medium ">Exhibition</span> collection.
+              Exciting new designs are on their way in our <span className="font-serifBrand font-normal ">Exhibition</span> collection.
             </p>
             <div className="mt-8">
               <div className="w-24 h-1 bg-[#0000D3] mx-auto rounded-full animate-bounce"></div>
