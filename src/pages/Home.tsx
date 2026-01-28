@@ -198,7 +198,7 @@ const Home: React.FC = () => {
               <div key="studio-section">
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="flex flex-col justify-start p-5 sm:p-8 md:p-16 lg:p-20 md:h-screen bg-[#0000D3] text-white">
-                    <p className="font-sansBrand font-normal text-md lg:text-lg 2xl:text-3xl text-justify">{limitWords(studio.description, wordLimit)}</p>
+                    <p className="font-sansBrand font-normal text-md lg:text-lg 2xl:text-2xl text-justify">{limitWords(studio.description, wordLimit)}</p>
 
                     <div className="mt-10 flex justify-center">
                       <button

@@ -145,7 +145,7 @@ const About = () => {
     gap-10
     items-start
     justify-center
-        md:translate-x-12 lg:translate-x-24
+        md:translate-x-12 lg:translate-x-25
 
   "
             >
