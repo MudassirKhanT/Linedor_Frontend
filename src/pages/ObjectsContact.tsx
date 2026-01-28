@@ -73,7 +73,7 @@ const ObjectsContact: React.FC<Props> = ({ projectTitle }) => {
       {modalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
           <div className="bg-white w-full max-w-lg shadow-2xl relative animate-fadeIn">
-            <button className="absolute cursor-pointer top-3 right-4 text-gray-600 hover:text-black text-3xl leading-none transition" onClick={() => setModalOpen(false)}>
+            <button className="absolute cursor-pointer top-3 right-4 text-[#0000D3] text-3xl leading-none transition" onClick={() => setModalOpen(false)}>
               &times;
             </button>
 

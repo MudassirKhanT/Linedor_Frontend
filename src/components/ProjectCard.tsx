@@ -57,7 +57,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "f
               muted
               playsInline
               className="
-          w-full h-auto object-cover
+          w-full h-[33vh] object-cover
           md:absolute md:inset-0
           md:w-full md:h-screen
         "
@@ -118,3 +118,128 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "f
 };
 
 export default ProjectCard;
+
+// import { useRef } from "react";
+// import type { Project } from "../types/Project";
+// import logoWhite from "../assets/linedori logo white.png";
+
+// interface ProjectCardProps {
+//   project: Project;
+//   onClick: (id: string) => void;
+//   layout?: "full" | "half";
+// }
+
+// /* ---------- helper to detect real video ---------- */
+// const isVideoFile = (file?: string) => {
+//   if (!file) return false;
+//   return /\.(mp4|webm|mov)$/i.test(file);
+// };
+
+// const isMedia = (project: Project) => {
+//   return project.category === "video";
+// };
+
+// const ProjectCard: React.FC<ProjectCardProps> = ({ project, onClick, layout = "full" }) => {
+//   const ref = useRef<HTMLDivElement | null>(null);
+//   const backendUrl = import.meta.env.VITE_BACKEND_URL;
+
+//   const hasVideoFile = !!project.videoFile;
+//   const isVideo = isVideoFile(project.videoFile);
+
+//   /* ---------- MOBILE ASPECT RATIO (unchanged logic) ---------- */
+//   let aspectRatio = 1;
+//   if (project.images?.[0]) {
+//     const fileName = project.images[0].split("/").pop() || "";
+//     const parts = fileName.split(".");
+//     aspectRatio = parseFloat(`${parts[1]}.${parts[2]}`) || 1;
+//   }
+
+//   return (
+//     <div
+//       ref={ref}
+//       className={`
+//         relative w-full h-screen md:h-auto
+//         ${isVideo ? "cursor-default" : "cursor-pointer"}
+//       `}
+//       onClick={() => {
+//         if (!isVideo) onClick(project._id);
+//       }}
+//     >
+//       {/* ---------- MEDIA ---------- */}
+//       <div
+//         className="relative w-full h-full overflow-hidden md:h-full"
+//         style={!hasVideoFile ? { aspectRatio } : undefined}
+//       >
+//         {hasVideoFile ? (
+//           isVideo ? (
+//             <video
+//               src={`${backendUrl}/${project.videoFile}`}
+//               autoPlay
+//               loop
+//               muted
+//               playsInline
+//               className="
+//                 w-full h-full object-cover
+//                 md:absolute md:inset-0
+//                 md:w-full md:h-full
+//               "
+//             />
+//           ) : (
+//             <img
+//               src={`${backendUrl}/${project.videoFile}`}
+//               alt={project.title}
+//               draggable={false}
+//               className="
+//                 w-full h-full object-cover block
+//                 md:absolute md:inset-0
+//                 md:w-full md:h-full
+//               "
+//             />
+//           )
+//         ) : project.images?.[0] ? (
+//           <img
+//             src={`${backendUrl}/${project.images[0]}`}
+//             alt={project.title}
+//             draggable={false}
+//             className="
+//               w-full h-full object-cover block
+//               md:absolute md:inset-0
+//               md:w-full md:h-full
+//             "
+//           />
+//         ) : (
+//           <div className="w-full h-full flex items-center justify-center bg-[#0000D3] text-white">
+//             No Preview
+//           </div>
+//         )}
+//       </div>
+
+//       {/* ---------- CENTER LOGO ---------- */}
+//       {project.homePageOrder === 1 && (
+//         <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+//           <img
+//             src={logoWhite}
+//             alt="Linedori Logo"
+//             draggable={false}
+//             className="h-7 sm:h-10 md:h-14 lg:h-20 xl:h-24 w-auto select-none pointer-events-auto cursor-pointer"
+//             onClick={(e) => {
+//               e.stopPropagation();
+//               window.location.reload();
+//             }}
+//           />
+//         </div>
+//       )}
+
+//       {/* ---------- TITLE ---------- */}
+//       {!isMedia(project) && (
+//         <div className="absolute bottom-0 left-0 w-full bg-gradient-to-t from-black/70 to-transparent p-3 md:p-5 text-white z-10">
+//           <h1 className="text-md md:text-lg font-serifBrand font-normal px-5 mb-2">
+//             {project.title}
+//           </h1>
+//         </div>
+//       )}
+//     </div>
+//   );
+// };
+
+// export default ProjectCard;

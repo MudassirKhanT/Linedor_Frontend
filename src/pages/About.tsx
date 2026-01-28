@@ -116,7 +116,7 @@ const About = () => {
 
       <section id="studio" className="flex flex-col md:flex-row min-h-screen">
         {/* MEDIA */}
-        <div className="w-full md:w-1/2 h-[40vh] md:h-screen">{studio?.image ? isVideo(studio.image) ? <video src={`${backendUrl}${studio.image}`} autoPlay muted loop playsInline className="w-full h-full object-cover outline-none" /> : <img src={`${backendUrl}${studio.image}`} className="w-full h-full object-cover" /> : <div className="w-full h-full bg-gray-200 flex items-center justify-center">No Media</div>}</div>
+        <div className="w-full md:w-1/2 sm:h-screen ">{studio?.image ? isVideo(studio.image) ? <video src={`${backendUrl}${studio.image}`} autoPlay muted loop playsInline className="w-full h-full object-cover outline-none" /> : <img src={`${backendUrl}${studio.image}`} className="w-full md:h-full aspect-[3/4] md:aspect-auto object-cover" /> : <div className="w-full h-full bg-gray-200 flex items-center justify-center">No Media</div>}</div>
 
         {/* CONTENT — NO TOP GAP */}
         <div className="w-full md:w-1/2 px-8 md:px-16 py-5 md:pt-13  flex flex-col bg-[#0000D3] space-y-4 ">
@@ -132,7 +132,7 @@ const About = () => {
       <section id="people" className="bg-white py-8 sm:py-15 2xl:max-w-[1400px] 2xl:mx-auto">
         {/* ---------- HEADING ---------- */}
         <div className="text-center mb-5 sm:mb-15 px-4 sm:px-6">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serifBrand font-normal text-[#0000D3] ">Team</h2>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serifBrand font-normal text-[#0000D3] ">People</h2>
         </div>
 
         {/* ---------- TEAM LIST ---------- */}
@@ -145,7 +145,7 @@ const About = () => {
     gap-10
     items-start
     justify-center
-        md:translate-x-12 lg:translate-x-26
+        md:translate-x-12 lg:translate-x-20
 
   "
             >
@@ -168,7 +168,7 @@ const About = () => {
 
                 {member.role && <p className="text-[#0000D3] text-center md:text-left font-serifBrand font-normal text-base sm:text-lg lg:text-xl mb-5">{member.role}</p>}
 
-                <p className="text-[#0000D3] text-justify font-sansBrand font-normal text-sm sm:text-base leading-relaxed px-4 sm:px-0">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
+                <p className="text-[#0000D3] text-justify font-sansBrand font-normal  sm:text-base leading-relaxed px-8 sm:px-0">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
               </div>
             </div>
           ))}
@@ -180,7 +180,7 @@ const About = () => {
         <h2 className="text-3xl font-serifBrand font-normal text-[#0000D3] mb-4">Press</h2>
         <p className="text-[#0000D3] font-sansBrand font-normal text-sm sm:text-base  max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
         <a href="/press" className="text-[#0000D3] font-serifBrand font-normal hover:underline">
-          <span className="inline-flex items-center gap-1 leading-none">
+          <span className="inline-flex items-center gap-1 text-md md:text-lg  leading-none">
             View All Press
             <ArrowRight size={20} className="translate-y-[2px]" />
           </span>

@@ -108,7 +108,7 @@ const Header: React.FC<HeaderProps> = () => {
         {/* -------- MOBILE MENU -------- */}
         {menuOpen && (
           <div className="fixed top-0 left-0 w-screen h-screen bg-white z-[999] flex flex-col justify-between animate-slideDown">
-            <button className="absolute top-6 right-6 text-black hover:opacity-70" onClick={() => setMenuOpen(false)}>
+            <button className="absolute top-6 right-6 text-[#0000D3]" onClick={() => setMenuOpen(false)}>
               <X size={36} />
             </button>
 

@@ -166,7 +166,7 @@ const Home: React.FC = () => {
     if (width < 640) return 60;
     if (width < 850) return 80;
     if (width < 1024) return 90;
-    if (width <= 1536) return 75;
+    if (width <= 1536) return 85;
 
     return 90;
   };
@@ -198,7 +198,7 @@ const Home: React.FC = () => {
               <div key="studio-section">
                 <div className="grid grid-cols-1 md:grid-cols-2">
                   <div className="flex flex-col p-5 sm:p-8 md:p-16 lg:p-15 lg:px-18 md:h-screen bg-[#0000D3] text-white">
-                    <p className="font-sansBrand  font-normal text-md lg:text-lg 2xl:text-3xl text-justify">{limitWords(studio.description, wordLimit)}</p>
+                    <p className="font-sansBrand   font-normal text-md lg:text-lg 2xl:text-3xl text-justify">{limitWords(studio.description, wordLimit)}</p>
 
                     <div className="mt-10 mx-auto flex">
                       <button
@@ -206,7 +206,7 @@ const Home: React.FC = () => {
                           navigate("/about");
                           window.scrollTo({ top: 0 });
                         }}
-                        className="font-serifBrand text-sm sm:text-base lg:text-lg xl:text-xl hover:underline"
+                        className="font-serifBrand text-md md:text-lg  xl:text-xl hover:underline"
                       >
                         <span className="flex items-center gap-1 leading-none">
                           Read More

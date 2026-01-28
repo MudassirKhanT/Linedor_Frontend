@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import type { Project } from "../types/Project";
 import Header from "@/components/layout/Header";
-import { X, ArrowRight, ArrowLeft, Plus, Minus } from "lucide-react";
+import { ArrowRight, ArrowLeft, Plus, Minus, XIcon } from "lucide-react";
 import ObjectsContact from "./ObjectsContact";
 
 const ProjectDetail: React.FC = () => {
@@ -154,13 +154,13 @@ const ProjectDetail: React.FC = () => {
       </div>
 
       {/* ---------------- INFO SECTION ---------------- */}
-      <div className="container px-6 md:px-10 py-14">
+      <div className="w-full px-6 md:px-10 py-14">
         <div className="grid md:grid-cols-2 items-center">
-          <div className="md:text-center flex flex-col">
+          <div className="md:text-center flex flex-col ">
             <h2 className="text-xl sm:text-left md:text-center md:text-2xl font-serifBrand font-normal mb-5 text-[#0000D3]">{project.title}</h2>
 
             {project.contactDescription && (
-              <ul className="text-[#0000D3] sm:text-left md:text-center font-sansBrand font-normal text-sm sm:text-base">
+              <ul className="text-[#0000D3] sm:text-left md:text-center font-sansBrand font-normal text-base">
                 {project.contactDescription
                   .split("\n")
                   .filter(Boolean)
@@ -171,7 +171,7 @@ const ProjectDetail: React.FC = () => {
             )}
 
             {/* ---------------- SPECS & CONTACT ---------------- */}
-            <div className="flex flex-col md:flex-row md:justify-center gap-4 mt-7">
+            <div className="flex sm:flex-row md:justify-center gap-4 mt-7 mb-6 sm:mb-0">
               {/* Specs PDF */}
               {project.pdfFile && (
                 <a
@@ -191,7 +191,6 @@ const ProjectDetail: React.FC = () => {
         text-[#0000D3]
         border
         border-[#0000D3]
-        
         cursor-pointer
         transition
         hover:bg-[#0000D3]
@@ -206,14 +205,14 @@ const ProjectDetail: React.FC = () => {
 
               {/* Objects Contact */}
               {project.category === "Objects" && (
-                <div className="mb-2 md:mb-0">
+                <div>
                   <ObjectsContact projectTitle={project.title} />
                 </div>
               )}
             </div>
           </div>
 
-          <div className="text-[#0000D3] font-sansBrand space-y-4 font-normal text-base md:text-lg">
+          <div className="text-[#0000D3] font-sansBrand space-y-4 font-normal text-base md:text-lg ">
             {project.description?.split(/\n\s*\n/).map((p, i) => (
               <p key={i}>{p}</p>
             ))}
@@ -282,7 +281,7 @@ const ProjectDetail: React.FC = () => {
                 e.stopPropagation();
                 goPrev();
               }}
-              className="absolute left-4 md:left-8 text-black p-3 rounded-full bg-grey/40 hover:bg-grey/60 cursor-pointer"
+              className="hidden md:block absolute left-4 md:left-8 text-[#0000D3] p-3 rounded-full bg-grey/40 hover:bg-grey/60 cursor-pointer"
             >
               <ArrowLeft size={34} />
             </button>
@@ -294,7 +293,7 @@ const ProjectDetail: React.FC = () => {
                 e.stopPropagation();
                 goNext();
               }}
-              className="absolute right-4 md:right-8 text-black p-3 rounded-full bg-grey/40 hover:bg-grey/60 cursor-pointer"
+              className="hidden md:block absolute right-4 md:right-8 text-[#0000D3] p-3 rounded-full bg-grey/40 hover:bg-grey/60 cursor-pointer"
             >
               <ArrowRight size={34} />
             </button>
@@ -328,9 +327,9 @@ const ProjectDetail: React.FC = () => {
                 e.stopPropagation();
                 closeModal();
               }}
-              className="absolute top-6 right-8 text-black cursor-pointer hover:opacity-80"
+              className="absolute top-6 right-8 text-[#0000D3] cursor-pointer hover:opacity-80"
             >
-              <X size={34} />
+              <XIcon size={34} />
             </button>
           </div>
         </div>
