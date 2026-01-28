@@ -8,26 +8,26 @@ const Footer: React.FC = () => {
         {/* -------- BRAND -------- */}
         <div className="md:mx-auto flex flex-col">
           <div className="font-sansBrand font-normal mb-3">LİNEDORİ</div>
-          <p className="font-serifBrand font-medium">191 Dr. D. N. Road,</p>
-          <p className="font-serifBrand font-medium">1st Floor, Ravi Building,</p>
-          <p className="mb-3 font-serifBrand font-medium">Fort, Mumbai 400026</p>
+          <p className="font-serifBrand font-normal">191 Dr. D. N. Road,</p>
+          <p className="font-serifBrand font-normal">1st Floor, Ravi Building,</p>
+          <p className="mb-3 font-serifBrand font-normal">Fort, Mumbai 400026</p>
 
-          <p className="mb-3 font-serifBrand font-medium">
+          <p className="mb-3 font-serifBrand font-normal">
             <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" className="hover:underline">
               Google Maps
             </a>
           </p>
 
-          <p className="font-serifBrand font-medium">COA Registration Number</p>
-          <p className="font-serifBrand font-medium">CA/2025/188024</p>
+          <p className="font-serifBrand font-normal">COA Registration Number</p>
+          <p className="font-serifBrand font-normal">CA/2025/188024</p>
         </div>
 
         {/* -------- CONTACT -------- */}
         <div className="md:mx-auto flex flex-col">
           <div className="font-sansBrand font-normal mb-3">CONTACT</div>
 
-          <a href="mailto:hello@finedori.xyz" className="block hover:underline font-serifBrand font-medium">
-            hello@finedori.xyz
+          <a href="mailto:hello@finedori.xyz" className="block hover:underline font-serifBrand font-normal">
+            hello@linedori.xyz
           </a>
         </div>
 
@@ -35,15 +35,15 @@ const Footer: React.FC = () => {
         <div className="md:mx-auto flex flex-col">
           <div className="font-sansBrand font-normal mb-3">QUICK LINKS</div>
 
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="block hover:underline font-serifBrand font-medium">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="block hover:underline font-serifBrand font-normal">
             LinkedIn
           </a>
 
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="block hover:underline font-serifBrand font-medium">
+          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="block hover:underline font-serifBrand font-normal">
             Instagram
           </a>
 
-          <a href="/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer" className="hover:underline font-serifBrand font-medium">
+          <a href="/terms-and-conditions.pdf" target="_blank" rel="noopener noreferrer" className="hover:underline font-serifBrand font-normal">
             Resources
           </a>
         </div>

@@ -80,8 +80,8 @@ const ObjectsContact: React.FC<Props> = ({ projectTitle }) => {
             {!success ? (
               <>
                 <div className="border-b border-gray-200 px-6 py-4">
-                  <h2 className="text-2xl font-semibold text-[#0000D3] text-center">Connect</h2>
-                  <p className="text-center text-[#0000D3] text-sm mt-2">
+                  <h2 className="text-xl sm:text-2xl font-serifBrand font-normal text-[#0000D3] text-center">Connect</h2>
+                  <p className="text-center text-[#0000D3] font-sansBrand font-normal text-sm sm:text-base mt-2">
                     Interested in <span className="font-semibold">{projectTitle}</span>? Fill out the form below — we’ll reach out soon.
                   </p>
                 </div>
@@ -92,7 +92,7 @@ const ObjectsContact: React.FC<Props> = ({ projectTitle }) => {
                   <input type="text" name="subject" placeholder="Subject" required className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-700" />
                   <textarea name="message" placeholder="Message" rows={4} required className="w-full border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-gray-700 resize-none"></textarea>
 
-                  <button type="submit" disabled={loading} className="w-full cursor-pointer bg-[#0000D3] text-white py-2 text-sm hover:bg-gray-900 transition">
+                  <button type="submit" disabled={loading} className="w-full cursor-pointer bg-[#0000D3] text-white py-2 text-sm font-serifBrand font-normal hover:bg-gray-900 transition">
                     {loading ? "Sending..." : "Send Message"}
                   </button>
 
@@ -104,8 +104,8 @@ const ObjectsContact: React.FC<Props> = ({ projectTitle }) => {
                 <svg className="w-16 h-16 text-green-500 mb-4 animate-bounce" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
                 </svg>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">Success!</h3>
-                <p className="text-gray-600 text-sm text-center">Your message has been sent successfully. We’ll get back to you soon!</p>
+                <h3 className="text-xl font-serifBrand font-normal text-[#0000D3] mb-2">Success!</h3>
+                <p className="text-[#0000D3] text-sm text-center">Your message has been sent successfully. We’ll get back to you soon!</p>
               </div>
             )}
           </div>

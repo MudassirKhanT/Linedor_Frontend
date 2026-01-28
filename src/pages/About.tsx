@@ -125,14 +125,13 @@ const About = () => {
               {p}
             </p>
           ))}
-          {/* <p className="text-white font-sansBrand text-base md:text-lg leading-relaxed text-justify">{studio?.description}</p> */}
         </div>
       </section>
 
       {/* ================= PEOPLE ================= */}
-      <section id="people" className="bg-white py-16 sm:py-15 2xl:max-w-[1400px] 2xl:mx-auto">
+      <section id="people" className="bg-white py-8 sm:py-15 2xl:max-w-[1400px] 2xl:mx-auto">
         {/* ---------- HEADING ---------- */}
-        <div className="text-center  sm:mb-15 px-4 sm:px-6">
+        <div className="text-center mb-5 sm:mb-15 px-4 sm:px-6">
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-serifBrand font-normal text-[#0000D3] ">Team</h2>
         </div>
 
@@ -146,7 +145,7 @@ const About = () => {
     gap-10
     items-start
     justify-center
-        md:translate-x-12 lg:translate-x-27
+        md:translate-x-12 lg:translate-x-24
 
   "
             >
@@ -169,7 +168,7 @@ const About = () => {
 
                 {member.role && <p className="text-[#0000D3] text-center md:text-left font-serifBrand font-normal text-base sm:text-lg lg:text-xl mb-5">{member.role}</p>}
 
-                <p className="text-[#0000D3]  text-justify font-sansBrand font-normal text-sm sm:text-base leading-relaxed">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
+                <p className="text-[#0000D3] text-justify font-sansBrand font-normal text-sm sm:text-base leading-relaxed px-4 sm:px-0">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
               </div>
             </div>
           ))}
