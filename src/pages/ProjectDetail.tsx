@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import type { Project } from "../types/Project";
 import Header from "@/components/layout/Header";
-import { ArrowRight, ArrowLeft, Plus, Minus, XIcon } from "lucide-react";
+import { ArrowRight, ArrowLeft, XIcon } from "lucide-react";
 import ObjectsContact from "./ObjectsContact";
 
 const ProjectDetail: React.FC = () => {
@@ -21,8 +21,8 @@ const ProjectDetail: React.FC = () => {
 
   const [touchStartX, setTouchStartX] = useState<number | null>(null);
   const [touchEndX, setTouchEndX] = useState<number | null>(null);
-  const zoomIn = () => setZoom((z) => Math.min(z + 0.25, 3));
-  const zoomOut = () => setZoom((z) => Math.max(z - 0.25, 1));
+  // const zoomIn = () => setZoom((z) => Math.min(z + 0.25, 3));
+  // const zoomOut = () => setZoom((z) => Math.max(z - 0.25, 1));
 
   /* ---------------- FETCH PROJECT ---------------- */
   useEffect(() => {
@@ -156,7 +156,7 @@ const ProjectDetail: React.FC = () => {
       {/* ---------------- INFO SECTION ---------------- */}
       <div className="w-full px-6 md:px-10 py-14">
         <div className="grid md:grid-cols-2 items-center">
-          <div className="md:text-center flex flex-col ">
+          <div className="md:text-center flex flex-col">
             <h2 className="text-xl sm:text-left md:text-center md:text-2xl font-serifBrand font-normal mb-5 text-[#0000D3]">{project.title}</h2>
 
             {project.contactDescription && (
@@ -171,14 +171,15 @@ const ProjectDetail: React.FC = () => {
             )}
 
             {/* ---------------- SPECS & CONTACT ---------------- */}
-            <div className="flex sm:flex-row md:justify-center gap-4 mt-7 mb-6 sm:mb-0">
-              {/* Specs PDF */}
-              {project.pdfFile && (
-                <a
-                  href={`${backendUrl}/${project.pdfFile}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="
+            {project.pdfFile && (
+              <div className="flex sm:flex-row md:justify-center gap-4 mt-7 mb-1 sm:mb-0">
+                {/* Specs PDF */}
+                {project.pdfFile && (
+                  <a
+                    href={`${backendUrl}/${project.pdfFile}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="
         inline-flex
         items-center
         justify-center
@@ -198,21 +199,22 @@ const ProjectDetail: React.FC = () => {
         active:scale-95
         w-fit
       "
-                >
-                  Specs
-                </a>
-              )}
+                  >
+                    Specs
+                  </a>
+                )}
 
-              {/* Objects Contact */}
-              {project.category === "Objects" && (
-                <div>
-                  <ObjectsContact projectTitle={project.title} />
-                </div>
-              )}
-            </div>
+                {/* Objects Contact */}
+                {project.category === "Objects" && (
+                  <div>
+                    <ObjectsContact projectTitle={project.title} />
+                  </div>
+                )}
+              </div>
+            )}
           </div>
 
-          <div className="text-[#0000D3] font-sansBrand space-y-4 font-normal text-base md:text-lg ">
+          <div className="text-[#0000D3] font-sansBrand space-y-4 font-normal text-base md:text-lg mt-6 md:mt-0">
             {project.description?.split(/\n\s*\n/).map((p, i) => (
               <p key={i}>{p}</p>
             ))}
@@ -299,7 +301,7 @@ const ProjectDetail: React.FC = () => {
             </button>
 
             {/* ZOOM CONTROLS */}
-            <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 bg-black/40 px-4 py-2 rounded-full">
+            {/* <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-4 bg-black/40 px-4 py-2 rounded-full">
               <button
                 onClick={(e) => {
                   e.stopPropagation();
@@ -318,7 +320,7 @@ const ProjectDetail: React.FC = () => {
               >
                 <Plus size={17} />
               </button>
-            </div>
+            </div> */}
 
             {/* CLOSE */}
             <button
