@@ -178,7 +178,7 @@ const About = () => {
       {/* ================= PRESS ================= */}
       <section id="press" className=" text-center">
         <h2 className="text-3xl font-serifBrand font-normal text-[#0000D3] mb-4">Press</h2>
-        <p className="text-[#0000D3] font-sansBrand font-normal text-sm sm:text-base  max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
+        <p className="text-[#0000D3] font-sansBrand font-normal  sm:text-base  max-w-xl mx-auto mb-6">Explore our latest mentions and recognitions.</p>
         <a href="/press" className="text-[#0000D3] font-serifBrand font-normal hover:underline">
           <span className="inline-flex items-center gap-1 text-md md:text-lg  leading-none">
             View All Press
