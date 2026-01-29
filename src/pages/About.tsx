@@ -164,9 +164,9 @@ const About = () => {
 
               {/* CONTENT */}
               <div className=" md:max-w-md">
-                <p className="text-[#0000D3] text-center md:text-left font-serifBrand  text-xl sm:text-2xl font-normal leading-tight">{member.name}</p>
+                <p className="text-[#0000D3] text-center md:text-left font-serifBrand  text-xl md:text-2xl font-normal leading-tight">{member.name}</p>
 
-                {member.role && <p className="text-[#0000D3] text-center md:text-left font-serifBrand font-normal text-base sm:text-lg lg:text-xl mb-5">{member.role}</p>}
+                {member.role && <p className="text-[#0000D3] text-center md:text-left font-serifBrand font-normal text-xl md:text-2xl mb-5">{member.role}</p>}
 
                 <p className="text-[#0000D3] text-justify font-sansBrand font-normal  sm:text-base leading-relaxed px-8 sm:px-0">{member.description || "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}</p>
               </div>
